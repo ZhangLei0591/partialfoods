@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package PartialFoods.Services;
+
+service PointOfSaleCommand {
+    rpc SubmitTransaction(PointOfSaleTransaction) returns (TransactionSubmissionResponse);
+}
+
+message PointOfSaleTransaction {
+    string TransactionID = 1; // UUID
+    string StationID = 2; // UUID
+    uint64 CreatedOn = 3; // UTC milliseconds
+    string UserID = 4;
+    string LocationID = 5; // Store UUID
+
+    uint32 TaxRate = 6; // Percentage
+
+    repeated LineItem LineItems = 7;    
+}
+
+message LineItem {
+    string SKU = 1;
+    uint32 UnitPrice = 2;
+    uint32 Quantity = 3;
+}
+
+message TransactionSubmissionResponse {
+    bool Accepted = 1;
+    string AckID = 2; // UUID
+}
