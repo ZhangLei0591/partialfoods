@@ -9,20 +9,21 @@ namespace PartialFoods.CommandService.Tests
     {
         public FakeEventEmitter()
         {
-            this.EmittedTransactions = new List<PointOfSaleTransaction>();
+            this.EmittedTransactions = new List<PointOfSaleTransactionAcceptedEvent>();
             this.NextEmitResult = true;
         }
 
-        public bool EmitTransactionAcceptedEvent(PointOfSaleTransaction sourceTransaction)
+        public bool EmitTransactionAcceptedEvent(PointOfSaleTransactionAcceptedEvent evt)
         {
             if (this.NextEmitResult)
             {
-                this.EmittedTransactions.Add(sourceTransaction);
+                evt.AcknowledgementID = Guid.NewGuid().ToString();
+                this.EmittedTransactions.Add(evt);
             }
             return this.NextEmitResult;
         }
 
-        public List<PointOfSaleTransaction> EmittedTransactions { get; set; }
+        public List<PointOfSaleTransactionAcceptedEvent> EmittedTransactions { get; set; }
         public bool NextEmitResult { get; set; }
     }
 }

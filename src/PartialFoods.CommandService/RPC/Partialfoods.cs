@@ -88,7 +88,7 @@ namespace PartialFoods.Services {
     public const int TransactionIDFieldNumber = 1;
     private string transactionID_ = "";
     /// <summary>
-    /// UUID
+    /// UUID of the Transaction
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string TransactionID {
@@ -102,7 +102,7 @@ namespace PartialFoods.Services {
     public const int StationIDFieldNumber = 2;
     private string stationID_ = "";
     /// <summary>
-    /// UUID
+    /// UUID of the station/terminal that took the TX
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string StationID {
@@ -116,7 +116,7 @@ namespace PartialFoods.Services {
     public const int CreatedOnFieldNumber = 3;
     private ulong createdOn_;
     /// <summary>
-    /// UTC milliseconds
+    /// UTC milliseconds of time terminal created transaction
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ulong CreatedOn {
@@ -129,6 +129,9 @@ namespace PartialFoods.Services {
     /// <summary>Field number for the "UserID" field.</summary>
     public const int UserIDFieldNumber = 4;
     private string userID_ = "";
+    /// <summary>
+    /// Terminal User ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string UserID {
       get { return userID_; }
@@ -141,7 +144,7 @@ namespace PartialFoods.Services {
     public const int LocationIDFieldNumber = 5;
     private string locationID_ = "";
     /// <summary>
-    /// Store UUID
+    /// Unique store/location UUID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string LocationID {
@@ -155,7 +158,7 @@ namespace PartialFoods.Services {
     public const int TaxRateFieldNumber = 6;
     private uint taxRate_;
     /// <summary>
-    /// Percentage
+    /// Percentage rate of tax, whole numbers because reasons
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint TaxRate {
@@ -170,6 +173,9 @@ namespace PartialFoods.Services {
     private static readonly pb::FieldCodec<global::PartialFoods.Services.LineItem> _repeated_lineItems_codec
         = pb::FieldCodec.ForMessage(58, global::PartialFoods.Services.LineItem.Parser);
     private readonly pbc::RepeatedField<global::PartialFoods.Services.LineItem> lineItems_ = new pbc::RepeatedField<global::PartialFoods.Services.LineItem>();
+    /// <summary>
+    /// Individual line items on a transaction
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::PartialFoods.Services.LineItem> LineItems {
       get { return lineItems_; }
@@ -375,6 +381,9 @@ namespace PartialFoods.Services {
     /// <summary>Field number for the "SKU" field.</summary>
     public const int SKUFieldNumber = 1;
     private string sKU_ = "";
+    /// <summary>
+    /// Stock Keeping Unit of inventory item being purchased
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string SKU {
       get { return sKU_; }
@@ -386,6 +395,9 @@ namespace PartialFoods.Services {
     /// <summary>Field number for the "UnitPrice" field.</summary>
     public const int UnitPriceFieldNumber = 2;
     private uint unitPrice_;
+    /// <summary>
+    /// Price for a single item
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint UnitPrice {
       get { return unitPrice_; }
@@ -397,6 +409,9 @@ namespace PartialFoods.Services {
     /// <summary>Field number for the "Quantity" field.</summary>
     public const int QuantityFieldNumber = 3;
     private uint quantity_;
+    /// <summary>
+    /// Quantity of items purchased
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint Quantity {
       get { return quantity_; }
@@ -547,6 +562,9 @@ namespace PartialFoods.Services {
     /// <summary>Field number for the "Accepted" field.</summary>
     public const int AcceptedFieldNumber = 1;
     private bool accepted_;
+    /// <summary>
+    /// Indicates whether the transaction was accepted
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Accepted {
       get { return accepted_; }
@@ -559,7 +577,7 @@ namespace PartialFoods.Services {
     public const int AckIDFieldNumber = 2;
     private string ackID_ = "";
     /// <summary>
-    /// UUID
+    /// UUID of transaction acknowledgement for later lookup
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string AckID {

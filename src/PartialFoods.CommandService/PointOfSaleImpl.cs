@@ -33,9 +33,10 @@ namespace PartialFoods.CommandService
                 return Task.FromResult(response);
             }
 
-            if (eventEmitter.EmitTransactionAcceptedEvent(request))
+            var evt = PointOfSaleTransactionAcceptedEvent.FromProto(request);
+            if (eventEmitter.EmitTransactionAcceptedEvent(evt))
             {
-                response.AckID = Guid.NewGuid().ToString();
+                response.AckID = evt.AcknowledgementID;
                 response.Accepted = true;
             }
             else

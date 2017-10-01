@@ -7,24 +7,24 @@ service PointOfSaleCommand {
 }
 
 message PointOfSaleTransaction {
-    string TransactionID = 1; // UUID
-    string StationID = 2; // UUID
-    uint64 CreatedOn = 3; // UTC milliseconds
-    string UserID = 4;
-    string LocationID = 5; // Store UUID
+    string TransactionID = 1; // UUID of the Transaction
+    string StationID = 2; // UUID of the station/terminal that took the TX
+    uint64 CreatedOn = 3; // UTC milliseconds of time terminal created transaction
+    string UserID = 4; // Terminal User ID
+    string LocationID = 5; // Unique store/location UUID
 
-    uint32 TaxRate = 6; // Percentage
+    uint32 TaxRate = 6; // Percentage rate of tax, whole numbers because reasons
 
-    repeated LineItem LineItems = 7;    
+    repeated LineItem LineItems = 7; // Individual line items on a transaction
 }
 
 message LineItem {
-    string SKU = 1;
-    uint32 UnitPrice = 2;
-    uint32 Quantity = 3;
+    string SKU = 1;  // Stock Keeping Unit of inventory item being purchased
+    uint32 UnitPrice = 2; // Price for a single item
+    uint32 Quantity = 3; // Quantity of items purchased
 }
 
 message TransactionSubmissionResponse {
-    bool Accepted = 1;
-    string AckID = 2; // UUID
+    bool Accepted = 1; // Indicates whether the transaction was accepted
+    string AckID = 2; // UUID of transaction acknowledgement for later lookup
 }
