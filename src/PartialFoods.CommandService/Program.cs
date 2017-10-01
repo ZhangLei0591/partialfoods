@@ -10,8 +10,10 @@ namespace PartialFoods.CommandService
         {
             const int Port = 3000;
 
+            IEventEmitter rabbitEmitter = new RabbitEventEmitter();
+
             Server server = new Server {
-                Services = { PointOfSaleCommand.BindService(new PointOfSaleImpl()) },
+                Services = { PointOfSaleCommand.BindService(new PointOfSaleImpl(rabbitEmitter)) },
                 Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
             };
             server.Start();
@@ -20,7 +22,7 @@ namespace PartialFoods.CommandService
             Console.WriteLine("Press any key to stop");
 
             Console.ReadKey();
-            
+
             server.ShutdownAsync().Wait();
         }
     }

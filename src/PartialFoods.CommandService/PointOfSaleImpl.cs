@@ -15,14 +15,49 @@ namespace PartialFoods.CommandService
 {
     public class PointOfSaleImpl : PointOfSaleCommand.PointOfSaleCommandBase
     {
+        private IEventEmitter eventEmitter;
+
+        public PointOfSaleImpl(IEventEmitter emitter)
+        {
+            eventEmitter = emitter;
+        }
+
         public override Task<TransactionSubmissionResponse> SubmitTransaction(PointOfSaleTransaction request, grpc::ServerCallContext context)
         {
             Console.WriteLine("Handling POS Transaction Submission...");
             var response = new TransactionSubmissionResponse();
-            response.AckID = Guid.NewGuid().ToString();
-            response.Accepted = true;            
-            
+
+            if (!isValidRequest(request))
+            {
+                response.Accepted = false;
+                return Task.FromResult(response);
+            }
+
+            if (eventEmitter.EmitTransactionAcceptedEvent(request))
+            {
+                response.AckID = Guid.NewGuid().ToString();
+                response.Accepted = true;
+            }
+            else
+            {
+                response.Accepted = false;
+            }
+
             return Task.FromResult(response);
+        }
+
+        private bool isValidRequest(PointOfSaleTransaction request)
+        {
+            if (request.LineItems.Count == 0)
+            {
+                return false;
+            }
+            if (request.TaxRate > 50)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
