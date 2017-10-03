@@ -11,7 +11,7 @@ using grpc = global::Grpc.Core;
 using PartialFoods.Services;
 using Google.Protobuf; // required for byte array extension
 
-namespace PartialFoods.CommandService
+namespace PartialFoods.Services.OrderCommandServer
 {
     public class OrderCommandImpl : OrderCommand.OrderCommandBase
     {

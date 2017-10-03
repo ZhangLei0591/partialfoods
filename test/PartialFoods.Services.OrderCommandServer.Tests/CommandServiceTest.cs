@@ -1,6 +1,7 @@
 using System;
 using Google.Protobuf.Collections;
 using PartialFoods.Services;
+using PartialFoods.Services.OrderCommandServer;
 using Xunit;
 
 namespace PartialFoods.CommandService.Tests

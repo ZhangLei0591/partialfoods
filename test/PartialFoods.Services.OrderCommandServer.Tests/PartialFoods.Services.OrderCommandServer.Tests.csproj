@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\PartialFoods.CommandService\PartialFoods.CommandService.csproj" />
+    <ProjectReference Include="..\..\src\PartialFoods.Services.OrderCommandServer\PartialFoods.Services.OrderCommandServer.csproj" />
   </ItemGroup>
 
 </Project>

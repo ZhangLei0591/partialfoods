@@ -2,7 +2,7 @@
 using Grpc.Core;
 using PartialFoods.Services;
 
-namespace PartialFoods.CommandService
+namespace PartialFoods.Services.OrderCommandServer
 {
     class Program
     {

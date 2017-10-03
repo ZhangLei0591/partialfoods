@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using PartialFoods.Services;
 
-namespace PartialFoods.CommandService
+namespace PartialFoods.Services.OrderCommandServer
 {
     public class OrderAcceptedEvent
     {

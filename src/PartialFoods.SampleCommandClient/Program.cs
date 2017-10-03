@@ -2,7 +2,7 @@
 using Grpc.Core;
 using PartialFoods.Services;
 
-namespace PartialFoods.SamplePosClient
+namespace PartialFoods.SampleCommandClient
 {
     class Program
     {

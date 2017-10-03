@@ -1,7 +1,7 @@
 using System;
-using PartialFoods.CommandService;
 using PartialFoods.Services;
 using System.Collections.Generic;
+using PartialFoods.Services.OrderCommandServer;
 
 namespace PartialFoods.CommandService.Tests
 {
