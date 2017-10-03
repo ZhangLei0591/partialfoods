@@ -13,19 +13,19 @@ using Google.Protobuf; // required for byte array extension
 
 namespace PartialFoods.CommandService
 {
-    public class PointOfSaleImpl : PointOfSaleCommand.PointOfSaleCommandBase
+    public class OrderCommandImpl : OrderCommand.OrderCommandBase
     {
         private IEventEmitter eventEmitter;
 
-        public PointOfSaleImpl(IEventEmitter emitter)
+        public OrderCommandImpl(IEventEmitter emitter)
         {
             eventEmitter = emitter;
         }
 
-        public override Task<TransactionSubmissionResponse> SubmitTransaction(PointOfSaleTransaction request, grpc::ServerCallContext context)
+        public override Task<OrderResponse> SubmitOrder(OrderRequest request, grpc::ServerCallContext context)
         {
             Console.WriteLine("Handling POS Transaction Submission...");
-            var response = new TransactionSubmissionResponse();
+            var response = new OrderResponse();
 
             if (!isValidRequest(request))
             {
@@ -33,10 +33,10 @@ namespace PartialFoods.CommandService
                 return Task.FromResult(response);
             }
 
-            var evt = PointOfSaleTransactionAcceptedEvent.FromProto(request);
-            if (eventEmitter.EmitTransactionAcceptedEvent(evt))
+            var evt = OrderAcceptedEvent.FromProto(request);
+            if (eventEmitter.EmitOrderAcceptedEvent(evt))
             {
-                response.AckID = evt.AcknowledgementID;
+                response.OrderID = evt.OrderID;
                 response.Accepted = true;
             }
             else
@@ -47,7 +47,7 @@ namespace PartialFoods.CommandService
             return Task.FromResult(response);
         }
 
-        private bool isValidRequest(PointOfSaleTransaction request)
+        private bool isValidRequest(OrderRequest request)
         {
             if (request.LineItems.Count == 0)
             {

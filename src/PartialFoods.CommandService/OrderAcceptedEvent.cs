@@ -5,13 +5,10 @@ using PartialFoods.Services;
 
 namespace PartialFoods.CommandService
 {
-
-    public class PointOfSaleTransactionAcceptedEvent
+    public class OrderAcceptedEvent
     {
-        [JsonProperty("transaction_id")]
-        public string TransactionID;
-        [JsonProperty("station_id")]
-        public string StationID;
+        [JsonProperty("order_id")]
+        public string OrderID;
 
         [JsonProperty("created_on")]
         public ulong CreatedOn;
@@ -19,26 +16,17 @@ namespace PartialFoods.CommandService
         [JsonProperty("user_id")]
         public string UserID;
 
-        [JsonProperty("location_id")]
-        public string LocationID;
-
         [JsonProperty("tax_rate")]
         public uint TaxRate;
-
-        [JsonProperty("ack_id")]
-        public string AcknowledgementID;
 
         [JsonProperty("line_items")]
         public ICollection<EventLineItem> LineItems;
 
-        public static PointOfSaleTransactionAcceptedEvent FromProto(PointOfSaleTransaction tx)
+        public static OrderAcceptedEvent FromProto(OrderRequest tx)
         {
-            var evt = new PointOfSaleTransactionAcceptedEvent
+            var evt = new OrderAcceptedEvent
             {
                 TaxRate = tx.TaxRate,
-                StationID = tx.StationID,
-                TransactionID = tx.TransactionID,
-                LocationID = tx.LocationID,
                 CreatedOn = tx.CreatedOn,
                 UserID = tx.UserID
             };

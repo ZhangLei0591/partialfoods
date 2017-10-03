@@ -5,9 +5,10 @@ namespace PartialFoods.CommandService
 {
     public class RabbitEventEmitter : IEventEmitter
     {
-        public bool EmitTransactionAcceptedEvent(PointOfSaleTransactionAcceptedEvent evt)
+        public bool EmitOrderAcceptedEvent(OrderAcceptedEvent evt)
         {
-            evt.AcknowledgementID = Guid.NewGuid().ToString();
+            Console.WriteLine("Emitting order accepted event...");
+            evt.OrderID = Guid.NewGuid().ToString();
             return true; // TODO add implementation
         }
     }

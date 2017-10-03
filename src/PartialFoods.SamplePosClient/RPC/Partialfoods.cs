@@ -22,34 +22,36 @@ namespace PartialFoods.Services {
     static PartialfoodsReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChJwYXJ0aWFsZm9vZHMucHJvdG8SFVBhcnRpYWxGb29kcy5TZXJ2aWNlcyK+",
-            "AQoWUG9pbnRPZlNhbGVUcmFuc2FjdGlvbhIVCg1UcmFuc2FjdGlvbklEGAEg",
-            "ASgJEhEKCVN0YXRpb25JRBgCIAEoCRIRCglDcmVhdGVkT24YAyABKAQSDgoG",
-            "VXNlcklEGAQgASgJEhIKCkxvY2F0aW9uSUQYBSABKAkSDwoHVGF4UmF0ZRgG",
-            "IAEoDRIyCglMaW5lSXRlbXMYByADKAsyHy5QYXJ0aWFsRm9vZHMuU2Vydmlj",
-            "ZXMuTGluZUl0ZW0iPAoITGluZUl0ZW0SCwoDU0tVGAEgASgJEhEKCVVuaXRQ",
-            "cmljZRgCIAEoDRIQCghRdWFudGl0eRgDIAEoDSJACh1UcmFuc2FjdGlvblN1",
-            "Ym1pc3Npb25SZXNwb25zZRIQCghBY2NlcHRlZBgBIAEoCBINCgVBY2tJRBgC",
-            "IAEoCTKOAQoSUG9pbnRPZlNhbGVDb21tYW5kEngKEVN1Ym1pdFRyYW5zYWN0",
-            "aW9uEi0uUGFydGlhbEZvb2RzLlNlcnZpY2VzLlBvaW50T2ZTYWxlVHJhbnNh",
-            "Y3Rpb24aNC5QYXJ0aWFsRm9vZHMuU2VydmljZXMuVHJhbnNhY3Rpb25TdWJt",
-            "aXNzaW9uUmVzcG9uc2ViBnByb3RvMw=="));
+            "ChJwYXJ0aWFsZm9vZHMucHJvdG8SFVBhcnRpYWxGb29kcy5TZXJ2aWNlcyKx",
+            "AQoMT3JkZXJSZXF1ZXN0EhEKCUNyZWF0ZWRPbhgBIAEoBBIOCgZVc2VySUQY",
+            "AiABKAkSDwoHVGF4UmF0ZRgDIAEoDRI5CgxTaGlwcGluZ0luZm8YBCABKAsy",
+            "Iy5QYXJ0aWFsRm9vZHMuU2VydmljZXMuU2hpcHBpbmdJbmZvEjIKCUxpbmVJ",
+            "dGVtcxgFIAMoCzIfLlBhcnRpYWxGb29kcy5TZXJ2aWNlcy5MaW5lSXRlbSJp",
+            "CgxTaGlwcGluZ0luZm8SEQoJQWRkcmVzc2VlGAEgASgJEhQKDEFkZHJlc3NM",
+            "aW5lcxgCIAMoCRIMCgRDaXR5GAMgASgJEg8KB1ppcENvZGUYBCABKAkSEQoJ",
+            "U3RhdGVDb2RlGAUgASgJIjwKCExpbmVJdGVtEgsKA1NLVRgBIAEoCRIRCglV",
+            "bml0UHJpY2UYAiABKA0SEAoIUXVhbnRpdHkYAyABKA0iMgoNT3JkZXJSZXNw",
+            "b25zZRIPCgdPcmRlcklEGAEgASgJEhAKCEFjY2VwdGVkGAIgASgIMmgKDE9y",
+            "ZGVyQ29tbWFuZBJYCgtTdWJtaXRPcmRlchIjLlBhcnRpYWxGb29kcy5TZXJ2",
+            "aWNlcy5PcmRlclJlcXVlc3QaJC5QYXJ0aWFsRm9vZHMuU2VydmljZXMuT3Jk",
+            "ZXJSZXNwb25zZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.PointOfSaleTransaction), global::PartialFoods.Services.PointOfSaleTransaction.Parser, new[]{ "TransactionID", "StationID", "CreatedOn", "UserID", "LocationID", "TaxRate", "LineItems" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.OrderRequest), global::PartialFoods.Services.OrderRequest.Parser, new[]{ "CreatedOn", "UserID", "TaxRate", "ShippingInfo", "LineItems" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.ShippingInfo), global::PartialFoods.Services.ShippingInfo.Parser, new[]{ "Addressee", "AddressLines", "City", "ZipCode", "StateCode" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.LineItem), global::PartialFoods.Services.LineItem.Parser, new[]{ "SKU", "UnitPrice", "Quantity" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.TransactionSubmissionResponse), global::PartialFoods.Services.TransactionSubmissionResponse.Parser, new[]{ "Accepted", "AckID" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.OrderResponse), global::PartialFoods.Services.OrderResponse.Parser, new[]{ "OrderID", "Accepted" }, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
-  public sealed partial class PointOfSaleTransaction : pb::IMessage<PointOfSaleTransaction> {
-    private static readonly pb::MessageParser<PointOfSaleTransaction> _parser = new pb::MessageParser<PointOfSaleTransaction>(() => new PointOfSaleTransaction());
+  public sealed partial class OrderRequest : pb::IMessage<OrderRequest> {
+    private static readonly pb::MessageParser<OrderRequest> _parser = new pb::MessageParser<OrderRequest>(() => new OrderRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<PointOfSaleTransaction> Parser { get { return _parser; } }
+    public static pb::MessageParser<OrderRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -62,58 +64,28 @@ namespace PartialFoods.Services {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public PointOfSaleTransaction() {
+    public OrderRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public PointOfSaleTransaction(PointOfSaleTransaction other) : this() {
-      transactionID_ = other.transactionID_;
-      stationID_ = other.stationID_;
+    public OrderRequest(OrderRequest other) : this() {
       createdOn_ = other.createdOn_;
       userID_ = other.userID_;
-      locationID_ = other.locationID_;
       taxRate_ = other.taxRate_;
+      ShippingInfo = other.shippingInfo_ != null ? other.ShippingInfo.Clone() : null;
       lineItems_ = other.lineItems_.Clone();
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public PointOfSaleTransaction Clone() {
-      return new PointOfSaleTransaction(this);
-    }
-
-    /// <summary>Field number for the "TransactionID" field.</summary>
-    public const int TransactionIDFieldNumber = 1;
-    private string transactionID_ = "";
-    /// <summary>
-    /// UUID of the Transaction
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string TransactionID {
-      get { return transactionID_; }
-      set {
-        transactionID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "StationID" field.</summary>
-    public const int StationIDFieldNumber = 2;
-    private string stationID_ = "";
-    /// <summary>
-    /// UUID of the station/terminal that took the TX
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string StationID {
-      get { return stationID_; }
-      set {
-        stationID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
+    public OrderRequest Clone() {
+      return new OrderRequest(this);
     }
 
     /// <summary>Field number for the "CreatedOn" field.</summary>
-    public const int CreatedOnFieldNumber = 3;
+    public const int CreatedOnFieldNumber = 1;
     private ulong createdOn_;
     /// <summary>
     /// UTC milliseconds of time terminal created transaction
@@ -127,10 +99,10 @@ namespace PartialFoods.Services {
     }
 
     /// <summary>Field number for the "UserID" field.</summary>
-    public const int UserIDFieldNumber = 4;
+    public const int UserIDFieldNumber = 2;
     private string userID_ = "";
     /// <summary>
-    /// Terminal User ID
+    /// User ID of the order owner
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string UserID {
@@ -140,22 +112,8 @@ namespace PartialFoods.Services {
       }
     }
 
-    /// <summary>Field number for the "LocationID" field.</summary>
-    public const int LocationIDFieldNumber = 5;
-    private string locationID_ = "";
-    /// <summary>
-    /// Unique store/location UUID
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string LocationID {
-      get { return locationID_; }
-      set {
-        locationID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
     /// <summary>Field number for the "TaxRate" field.</summary>
-    public const int TaxRateFieldNumber = 6;
+    public const int TaxRateFieldNumber = 3;
     private uint taxRate_;
     /// <summary>
     /// Percentage rate of tax, whole numbers because reasons
@@ -168,10 +126,24 @@ namespace PartialFoods.Services {
       }
     }
 
+    /// <summary>Field number for the "ShippingInfo" field.</summary>
+    public const int ShippingInfoFieldNumber = 4;
+    private global::PartialFoods.Services.ShippingInfo shippingInfo_;
+    /// <summary>
+    /// Information on where order is to be shipped
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::PartialFoods.Services.ShippingInfo ShippingInfo {
+      get { return shippingInfo_; }
+      set {
+        shippingInfo_ = value;
+      }
+    }
+
     /// <summary>Field number for the "LineItems" field.</summary>
-    public const int LineItemsFieldNumber = 7;
+    public const int LineItemsFieldNumber = 5;
     private static readonly pb::FieldCodec<global::PartialFoods.Services.LineItem> _repeated_lineItems_codec
-        = pb::FieldCodec.ForMessage(58, global::PartialFoods.Services.LineItem.Parser);
+        = pb::FieldCodec.ForMessage(42, global::PartialFoods.Services.LineItem.Parser);
     private readonly pbc::RepeatedField<global::PartialFoods.Services.LineItem> lineItems_ = new pbc::RepeatedField<global::PartialFoods.Services.LineItem>();
     /// <summary>
     /// Individual line items on a transaction
@@ -183,23 +155,21 @@ namespace PartialFoods.Services {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as PointOfSaleTransaction);
+      return Equals(other as OrderRequest);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(PointOfSaleTransaction other) {
+    public bool Equals(OrderRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TransactionID != other.TransactionID) return false;
-      if (StationID != other.StationID) return false;
       if (CreatedOn != other.CreatedOn) return false;
       if (UserID != other.UserID) return false;
-      if (LocationID != other.LocationID) return false;
       if (TaxRate != other.TaxRate) return false;
+      if (!object.Equals(ShippingInfo, other.ShippingInfo)) return false;
       if(!lineItems_.Equals(other.lineItems_)) return false;
       return true;
     }
@@ -207,12 +177,10 @@ namespace PartialFoods.Services {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TransactionID.Length != 0) hash ^= TransactionID.GetHashCode();
-      if (StationID.Length != 0) hash ^= StationID.GetHashCode();
       if (CreatedOn != 0UL) hash ^= CreatedOn.GetHashCode();
       if (UserID.Length != 0) hash ^= UserID.GetHashCode();
-      if (LocationID.Length != 0) hash ^= LocationID.GetHashCode();
       if (TaxRate != 0) hash ^= TaxRate.GetHashCode();
+      if (shippingInfo_ != null) hash ^= ShippingInfo.GetHashCode();
       hash ^= lineItems_.GetHashCode();
       return hash;
     }
@@ -224,29 +192,21 @@ namespace PartialFoods.Services {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (TransactionID.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(TransactionID);
-      }
-      if (StationID.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(StationID);
-      }
       if (CreatedOn != 0UL) {
-        output.WriteRawTag(24);
+        output.WriteRawTag(8);
         output.WriteUInt64(CreatedOn);
       }
       if (UserID.Length != 0) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(18);
         output.WriteString(UserID);
       }
-      if (LocationID.Length != 0) {
-        output.WriteRawTag(42);
-        output.WriteString(LocationID);
-      }
       if (TaxRate != 0) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(24);
         output.WriteUInt32(TaxRate);
+      }
+      if (shippingInfo_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(ShippingInfo);
       }
       lineItems_.WriteTo(output, _repeated_lineItems_codec);
     }
@@ -254,38 +214,26 @@ namespace PartialFoods.Services {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TransactionID.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(TransactionID);
-      }
-      if (StationID.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(StationID);
-      }
       if (CreatedOn != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(CreatedOn);
       }
       if (UserID.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
       }
-      if (LocationID.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(LocationID);
-      }
       if (TaxRate != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TaxRate);
+      }
+      if (shippingInfo_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ShippingInfo);
       }
       size += lineItems_.CalculateSize(_repeated_lineItems_codec);
       return size;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(PointOfSaleTransaction other) {
+    public void MergeFrom(OrderRequest other) {
       if (other == null) {
         return;
-      }
-      if (other.TransactionID.Length != 0) {
-        TransactionID = other.TransactionID;
-      }
-      if (other.StationID.Length != 0) {
-        StationID = other.StationID;
       }
       if (other.CreatedOn != 0UL) {
         CreatedOn = other.CreatedOn;
@@ -293,11 +241,14 @@ namespace PartialFoods.Services {
       if (other.UserID.Length != 0) {
         UserID = other.UserID;
       }
-      if (other.LocationID.Length != 0) {
-        LocationID = other.LocationID;
-      }
       if (other.TaxRate != 0) {
         TaxRate = other.TaxRate;
+      }
+      if (other.shippingInfo_ != null) {
+        if (shippingInfo_ == null) {
+          shippingInfo_ = new global::PartialFoods.Services.ShippingInfo();
+        }
+        ShippingInfo.MergeFrom(other.ShippingInfo);
       }
       lineItems_.Add(other.lineItems_);
     }
@@ -310,32 +261,248 @@ namespace PartialFoods.Services {
           default:
             input.SkipLastField();
             break;
-          case 10: {
-            TransactionID = input.ReadString();
-            break;
-          }
-          case 18: {
-            StationID = input.ReadString();
-            break;
-          }
-          case 24: {
+          case 8: {
             CreatedOn = input.ReadUInt64();
             break;
           }
-          case 34: {
+          case 18: {
             UserID = input.ReadString();
             break;
           }
-          case 42: {
-            LocationID = input.ReadString();
-            break;
-          }
-          case 48: {
+          case 24: {
             TaxRate = input.ReadUInt32();
             break;
           }
-          case 58: {
+          case 34: {
+            if (shippingInfo_ == null) {
+              shippingInfo_ = new global::PartialFoods.Services.ShippingInfo();
+            }
+            input.ReadMessage(shippingInfo_);
+            break;
+          }
+          case 42: {
             lineItems_.AddEntriesFrom(input, _repeated_lineItems_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ShippingInfo : pb::IMessage<ShippingInfo> {
+    private static readonly pb::MessageParser<ShippingInfo> _parser = new pb::MessageParser<ShippingInfo>(() => new ShippingInfo());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ShippingInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PartialFoods.Services.PartialfoodsReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ShippingInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ShippingInfo(ShippingInfo other) : this() {
+      addressee_ = other.addressee_;
+      addressLines_ = other.addressLines_.Clone();
+      city_ = other.city_;
+      zipCode_ = other.zipCode_;
+      stateCode_ = other.stateCode_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ShippingInfo Clone() {
+      return new ShippingInfo(this);
+    }
+
+    /// <summary>Field number for the "Addressee" field.</summary>
+    public const int AddresseeFieldNumber = 1;
+    private string addressee_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Addressee {
+      get { return addressee_; }
+      set {
+        addressee_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "AddressLines" field.</summary>
+    public const int AddressLinesFieldNumber = 2;
+    private static readonly pb::FieldCodec<string> _repeated_addressLines_codec
+        = pb::FieldCodec.ForString(18);
+    private readonly pbc::RepeatedField<string> addressLines_ = new pbc::RepeatedField<string>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<string> AddressLines {
+      get { return addressLines_; }
+    }
+
+    /// <summary>Field number for the "City" field.</summary>
+    public const int CityFieldNumber = 3;
+    private string city_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string City {
+      get { return city_; }
+      set {
+        city_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "ZipCode" field.</summary>
+    public const int ZipCodeFieldNumber = 4;
+    private string zipCode_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string ZipCode {
+      get { return zipCode_; }
+      set {
+        zipCode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "StateCode" field.</summary>
+    public const int StateCodeFieldNumber = 5;
+    private string stateCode_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string StateCode {
+      get { return stateCode_; }
+      set {
+        stateCode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ShippingInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ShippingInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Addressee != other.Addressee) return false;
+      if(!addressLines_.Equals(other.addressLines_)) return false;
+      if (City != other.City) return false;
+      if (ZipCode != other.ZipCode) return false;
+      if (StateCode != other.StateCode) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Addressee.Length != 0) hash ^= Addressee.GetHashCode();
+      hash ^= addressLines_.GetHashCode();
+      if (City.Length != 0) hash ^= City.GetHashCode();
+      if (ZipCode.Length != 0) hash ^= ZipCode.GetHashCode();
+      if (StateCode.Length != 0) hash ^= StateCode.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Addressee.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Addressee);
+      }
+      addressLines_.WriteTo(output, _repeated_addressLines_codec);
+      if (City.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(City);
+      }
+      if (ZipCode.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(ZipCode);
+      }
+      if (StateCode.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(StateCode);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Addressee.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Addressee);
+      }
+      size += addressLines_.CalculateSize(_repeated_addressLines_codec);
+      if (City.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(City);
+      }
+      if (ZipCode.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ZipCode);
+      }
+      if (StateCode.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(StateCode);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ShippingInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Addressee.Length != 0) {
+        Addressee = other.Addressee;
+      }
+      addressLines_.Add(other.addressLines_);
+      if (other.City.Length != 0) {
+        City = other.City;
+      }
+      if (other.ZipCode.Length != 0) {
+        ZipCode = other.ZipCode;
+      }
+      if (other.StateCode.Length != 0) {
+        StateCode = other.StateCode;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            Addressee = input.ReadString();
+            break;
+          }
+          case 18: {
+            addressLines_.AddEntriesFrom(input, _repeated_addressLines_codec);
+            break;
+          }
+          case 26: {
+            City = input.ReadString();
+            break;
+          }
+          case 34: {
+            ZipCode = input.ReadString();
+            break;
+          }
+          case 42: {
+            StateCode = input.ReadString();
             break;
           }
         }
@@ -351,7 +518,7 @@ namespace PartialFoods.Services {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PartialFoods.Services.PartialfoodsReflection.Descriptor.MessageTypes[1]; }
+      get { return global::PartialFoods.Services.PartialfoodsReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -526,14 +693,14 @@ namespace PartialFoods.Services {
 
   }
 
-  public sealed partial class TransactionSubmissionResponse : pb::IMessage<TransactionSubmissionResponse> {
-    private static readonly pb::MessageParser<TransactionSubmissionResponse> _parser = new pb::MessageParser<TransactionSubmissionResponse>(() => new TransactionSubmissionResponse());
+  public sealed partial class OrderResponse : pb::IMessage<OrderResponse> {
+    private static readonly pb::MessageParser<OrderResponse> _parser = new pb::MessageParser<OrderResponse>(() => new OrderResponse());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<TransactionSubmissionResponse> Parser { get { return _parser; } }
+    public static pb::MessageParser<OrderResponse> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PartialFoods.Services.PartialfoodsReflection.Descriptor.MessageTypes[2]; }
+      get { return global::PartialFoods.Services.PartialfoodsReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -542,28 +709,42 @@ namespace PartialFoods.Services {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TransactionSubmissionResponse() {
+    public OrderResponse() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TransactionSubmissionResponse(TransactionSubmissionResponse other) : this() {
+    public OrderResponse(OrderResponse other) : this() {
+      orderID_ = other.orderID_;
       accepted_ = other.accepted_;
-      ackID_ = other.ackID_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TransactionSubmissionResponse Clone() {
-      return new TransactionSubmissionResponse(this);
+    public OrderResponse Clone() {
+      return new OrderResponse(this);
+    }
+
+    /// <summary>Field number for the "OrderID" field.</summary>
+    public const int OrderIDFieldNumber = 1;
+    private string orderID_ = "";
+    /// <summary>
+    /// UUID of the order
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string OrderID {
+      get { return orderID_; }
+      set {
+        orderID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
     }
 
     /// <summary>Field number for the "Accepted" field.</summary>
-    public const int AcceptedFieldNumber = 1;
+    public const int AcceptedFieldNumber = 2;
     private bool accepted_;
     /// <summary>
-    /// Indicates whether the transaction was accepted
+    /// Indicates whether the transaction was accepted    
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Accepted {
@@ -573,43 +754,29 @@ namespace PartialFoods.Services {
       }
     }
 
-    /// <summary>Field number for the "AckID" field.</summary>
-    public const int AckIDFieldNumber = 2;
-    private string ackID_ = "";
-    /// <summary>
-    /// UUID of transaction acknowledgement for later lookup
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string AckID {
-      get { return ackID_; }
-      set {
-        ackID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as TransactionSubmissionResponse);
+      return Equals(other as OrderResponse);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(TransactionSubmissionResponse other) {
+    public bool Equals(OrderResponse other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (OrderID != other.OrderID) return false;
       if (Accepted != other.Accepted) return false;
-      if (AckID != other.AckID) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (OrderID.Length != 0) hash ^= OrderID.GetHashCode();
       if (Accepted != false) hash ^= Accepted.GetHashCode();
-      if (AckID.Length != 0) hash ^= AckID.GetHashCode();
       return hash;
     }
 
@@ -620,38 +787,38 @@ namespace PartialFoods.Services {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Accepted != false) {
-        output.WriteRawTag(8);
-        output.WriteBool(Accepted);
+      if (OrderID.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(OrderID);
       }
-      if (AckID.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(AckID);
+      if (Accepted != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Accepted);
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (OrderID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderID);
+      }
       if (Accepted != false) {
         size += 1 + 1;
-      }
-      if (AckID.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(AckID);
       }
       return size;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(TransactionSubmissionResponse other) {
+    public void MergeFrom(OrderResponse other) {
       if (other == null) {
         return;
       }
+      if (other.OrderID.Length != 0) {
+        OrderID = other.OrderID;
+      }
       if (other.Accepted != false) {
         Accepted = other.Accepted;
-      }
-      if (other.AckID.Length != 0) {
-        AckID = other.AckID;
       }
     }
 
@@ -663,12 +830,12 @@ namespace PartialFoods.Services {
           default:
             input.SkipLastField();
             break;
-          case 8: {
-            Accepted = input.ReadBool();
+          case 10: {
+            OrderID = input.ReadString();
             break;
           }
-          case 18: {
-            AckID = input.ReadString();
+          case 16: {
+            Accepted = input.ReadBool();
             break;
           }
         }

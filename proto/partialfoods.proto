@@ -2,20 +2,25 @@ syntax = "proto3";
 
 package PartialFoods.Services;
 
-service PointOfSaleCommand {
-    rpc SubmitTransaction(PointOfSaleTransaction) returns (TransactionSubmissionResponse);
+service OrderCommand {
+    rpc SubmitOrder(OrderRequest) returns (OrderResponse);
 }
 
-message PointOfSaleTransaction {
-    string TransactionID = 1; // UUID of the Transaction
-    string StationID = 2; // UUID of the station/terminal that took the TX
-    uint64 CreatedOn = 3; // UTC milliseconds of time terminal created transaction
-    string UserID = 4; // Terminal User ID
-    string LocationID = 5; // Unique store/location UUID
+message OrderRequest {    
+    uint64 CreatedOn = 1; // UTC milliseconds of time terminal created transaction
+    string UserID = 2; // User ID of the order owner
+    uint32 TaxRate = 3; // Percentage rate of tax, whole numbers because reasons
 
-    uint32 TaxRate = 6; // Percentage rate of tax, whole numbers because reasons
+    ShippingInfo ShippingInfo = 4; // Information on where order is to be shipped
+    repeated LineItem LineItems = 5; // Individual line items on a transaction
+}
 
-    repeated LineItem LineItems = 7; // Individual line items on a transaction
+message ShippingInfo {
+    string Addressee = 1;
+    repeated string AddressLines = 2;
+    string City = 3;
+    string ZipCode = 4;
+    string StateCode = 5;
 }
 
 message LineItem {
@@ -24,7 +29,7 @@ message LineItem {
     uint32 Quantity = 3; // Quantity of items purchased
 }
 
-message TransactionSubmissionResponse {
-    bool Accepted = 1; // Indicates whether the transaction was accepted
-    string AckID = 2; // UUID of transaction acknowledgement for later lookup
+message OrderResponse {
+    string OrderID = 1; // UUID of the order
+    bool Accepted = 2; // Indicates whether the transaction was accepted    
 }

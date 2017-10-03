@@ -6,6 +6,6 @@ namespace PartialFoods.CommandService
 {
     public interface IEventEmitter
     {
-        bool EmitTransactionAcceptedEvent(PointOfSaleTransactionAcceptedEvent evt);
+        bool EmitOrderAcceptedEvent(OrderAcceptedEvent evt);
     }
 }

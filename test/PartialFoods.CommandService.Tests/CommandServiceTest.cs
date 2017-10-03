@@ -11,13 +11,13 @@ namespace PartialFoods.CommandService.Tests
         public void SubmittingValidTransactionInvokesEmitter()
         {
             var emitter = new FakeEventEmitter();
-            var service = new PointOfSaleImpl(emitter);
+            var service = new OrderCommandImpl(emitter);
             var tx = GenerateFakeTransaction(true);
 
-            var result = service.SubmitTransaction(tx, null).Result;
+            var result = service.SubmitOrder(tx, null).Result;
 
             Assert.True(result.Accepted);
-            Assert.NotNull(result.AckID);
+            Assert.NotNull(result.OrderID);
             Assert.Equal(1, emitter.EmittedTransactions.Count);
         }
 
@@ -25,10 +25,10 @@ namespace PartialFoods.CommandService.Tests
         public void SubmittingBadTransactionDoesNotEmitEvent()
         {
             var emitter = new FakeEventEmitter();
-            var service = new PointOfSaleImpl(emitter);
+            var service = new OrderCommandImpl(emitter);
             var tx = GenerateFakeTransaction(false);
 
-            var result = service.SubmitTransaction(tx, null).Result;
+            var result = service.SubmitOrder(tx, null).Result;
 
             Assert.False(result.Accepted);
             Assert.Equal(0, emitter.EmittedTransactions.Count);
@@ -39,23 +39,20 @@ namespace PartialFoods.CommandService.Tests
         {
             var emitter = new FakeEventEmitter();
             emitter.NextEmitResult = false;
-            var service = new PointOfSaleImpl(emitter);
+            var service = new OrderCommandImpl(emitter);
             var tx = GenerateFakeTransaction(true);
 
-            var result = service.SubmitTransaction(tx, null).Result;
+            var result = service.SubmitOrder(tx, null).Result;
 
             Assert.False(result.Accepted);
             Assert.Equal(0, emitter.EmittedTransactions.Count);
         }
 
-        private PointOfSaleTransaction GenerateFakeTransaction(bool valid)
+        private OrderRequest GenerateFakeTransaction(bool valid)
         {
-            var tx = new PointOfSaleTransaction
+            var tx = new OrderRequest
             {
                 TaxRate = 99,
-                TransactionID = Guid.NewGuid().ToString(),
-                StationID = Guid.NewGuid().ToString(),
-                LocationID = Guid.NewGuid().ToString(),
                 CreatedOn = (ulong)DateTime.UtcNow.Ticks,
             };
             if (valid)
