@@ -43,7 +43,6 @@ namespace PartialFoods.CommandService
 
             return evt;
         }
-
     }
 
     public class EventLineItem

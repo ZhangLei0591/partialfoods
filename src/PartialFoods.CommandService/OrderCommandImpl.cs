@@ -24,7 +24,7 @@ namespace PartialFoods.CommandService
 
         public override Task<OrderResponse> SubmitOrder(OrderRequest request, grpc::ServerCallContext context)
         {
-            Console.WriteLine("Handling POS Transaction Submission...");
+            Console.WriteLine("Handling Order Request Submission");
             var response = new OrderResponse();
 
             if (!isValidRequest(request))
