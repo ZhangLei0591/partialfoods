@@ -10,11 +10,11 @@ namespace PartialFoods.Services.OrderCommandServer
         {
             const int Port = 3000;
 
-            IEventEmitter rabbitEmitter = new RabbitEventEmitter();
+            IEventEmitter kafkaEmitter = new KafkaEventEmitter();
 
             Server server = new Server
             {
-                Services = { OrderCommand.BindService(new OrderCommandImpl(rabbitEmitter)) },
+                Services = { OrderCommand.BindService(new OrderCommandImpl(kafkaEmitter)) },
                 Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
             };
             server.Start();
