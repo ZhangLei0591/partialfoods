@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package PartialFoods.Services;
+
+service OrderManagement {
+    rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
+}
+
+message GetOrderRequest {
+    string OrderID = 1;
+}
+
+message GetOrderResponse {
+    string OrderID = 1;
+}
