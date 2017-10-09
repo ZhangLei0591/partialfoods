@@ -34,8 +34,25 @@ namespace PartialFoods.Services.OrderCommandServer
             }
 
             var evt = OrderAcceptedEvent.FromProto(request);
+
             if (eventEmitter.EmitOrderAcceptedEvent(evt))
             {
+                foreach (var li in evt.LineItems)
+                {
+                    var reservedEvent = new InventoryReservedEvent
+                    {
+                        OrderID = evt.OrderID,
+                        ReservedOn = (ulong)DateTime.UtcNow.Ticks,
+                        SKU = li.SKU,
+                        Quantity = li.Quantity,
+                        UserID = evt.UserID
+                    };
+                    if (!eventEmitter.EmitInventoryReservedEvent(reservedEvent))
+                    {
+                        response.Accepted = false;
+                        return Task.FromResult(response);
+                    }
+                }
                 response.OrderID = evt.OrderID;
                 response.Accepted = true;
             }
@@ -43,7 +60,6 @@ namespace PartialFoods.Services.OrderCommandServer
             {
                 response.Accepted = false;
             }
-
             return Task.FromResult(response);
         }
 

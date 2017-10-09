@@ -7,5 +7,6 @@ namespace PartialFoods.Services.OrderCommandServer
     public interface IEventEmitter
     {
         bool EmitOrderAcceptedEvent(OrderAcceptedEvent evt);
+        bool EmitInventoryReservedEvent(InventoryReservedEvent evt);
     }
 }

@@ -10,6 +10,7 @@ namespace PartialFoods.CommandService.Tests
         public FakeEventEmitter()
         {
             this.EmittedTransactions = new List<OrderAcceptedEvent>();
+            this.EmittedInventoryReservedEvents = new List<InventoryReservedEvent>();
             this.NextEmitResult = true;
         }
 
@@ -23,7 +24,17 @@ namespace PartialFoods.CommandService.Tests
             return this.NextEmitResult;
         }
 
+        public bool EmitInventoryReservedEvent(InventoryReservedEvent evt)
+        {
+            if (this.NextEmitResult)
+            {
+                this.EmittedInventoryReservedEvents.Add(evt);
+            }
+            return this.NextEmitResult;
+        }
+
         public List<OrderAcceptedEvent> EmittedTransactions { get; set; }
+        public List<InventoryReservedEvent> EmittedInventoryReservedEvents { get; set; }
         public bool NextEmitResult { get; set; }
     }
 }

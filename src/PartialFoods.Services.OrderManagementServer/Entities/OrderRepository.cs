@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace PartialFoods.Services.OrderManagementServer.Entities
 {
@@ -13,9 +14,15 @@ namespace PartialFoods.Services.OrderManagementServer.Entities
 
         public Order Add(Order order)
         {
-            Console.WriteLine("Trying to add an order to repo");
+            Console.WriteLine($"Adding order {order.OrderID} to repository.");
             try
             {
+                var existing = context.Orders.FirstOrDefault(o => o.OrderID == order.OrderID);
+                if (existing != null)
+                {
+                    Console.WriteLine($"Bypassing add for order {order.OrderID} - already exists.");
+                    return order;
+                }
                 context.Add(order);
                 context.SaveChanges();
                 return order;

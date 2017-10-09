@@ -20,6 +20,10 @@ namespace PartialFoods.CommandService.Tests
             Assert.True(result.Accepted);
             Assert.NotNull(result.OrderID);
             Assert.Equal(1, emitter.EmittedTransactions.Count);
+            Assert.Equal(2, emitter.EmittedInventoryReservedEvents.Count);
+            Assert.Equal("ABC123", emitter.EmittedInventoryReservedEvents[0].SKU);
+            Assert.Equal("FYI555", emitter.EmittedInventoryReservedEvents[1].SKU);
+            Assert.Equal((uint)5, emitter.EmittedInventoryReservedEvents[1].Quantity);
         }
 
         [Fact]
