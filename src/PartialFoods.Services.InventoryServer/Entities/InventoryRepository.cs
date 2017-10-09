@@ -12,6 +12,46 @@ namespace PartialFoods.Services.InventoryServer.Entities
             this.context = context;
         }
 
+        public int GetCurrentQuantity(string sku)
+        {
+            try
+            {
+                var product = context.Products.FirstOrDefault(p => p.SKU == sku);
+                if (product != null)
+                {
+                    var productActivities = from activity in context.Activities
+                                            where activity.SKU == sku
+                                            orderby activity.CreatedOn
+                                            select activity;
+                    return productActivities.Aggregate(product.OriginalQuantity, (qty, next) =>
+                        (next.ActivityType == ActivityType.Released || next.ActivityType == ActivityType.Shipped) ?
+                            qty - next.Quantity : qty + next.Quantity
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine($"Failed to query current quantity: {ex.ToString()}");
+            }
+            return -1;
+        }
+
+        public Product GetProduct(string sku)
+        {
+            try
+            {
+                var product = context.Products.FirstOrDefault(p => p.SKU == sku);
+                return product;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine($"Failed to query product - {sku}");
+            }
+            return null;
+        }
+
         public ProductActivity PutActivity(ProductActivity activity)
         {
             Console.WriteLine($"Attempting to put activity {activity.ActivityID}, type {activity.ActivityType.ToString()}");
