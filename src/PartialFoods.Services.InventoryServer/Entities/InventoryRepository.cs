@@ -19,12 +19,14 @@ namespace PartialFoods.Services.InventoryServer.Entities
                 var product = context.Products.FirstOrDefault(p => p.SKU == sku);
                 if (product != null)
                 {
-                    var productActivities = from activity in context.Activities
-                                            where activity.SKU == sku
-                                            orderby activity.CreatedOn
-                                            select activity;
+                    var productActivities = (from activity in context.Activities
+                                             where activity.SKU == sku
+                                             orderby activity.CreatedOn
+                                             select activity).ToArray();
+
+                    // Reserve and Ship decrease qty, release a reservation increases
                     return productActivities.Aggregate(product.OriginalQuantity, (qty, next) =>
-                        (next.ActivityType == ActivityType.Released || next.ActivityType == ActivityType.Shipped) ?
+                        (next.ActivityType == ActivityType.Reserved || next.ActivityType == ActivityType.Shipped) ?
                             qty - next.Quantity : qty + next.Quantity
                     );
                 }
@@ -34,7 +36,7 @@ namespace PartialFoods.Services.InventoryServer.Entities
                 Console.WriteLine(ex.StackTrace);
                 Console.WriteLine($"Failed to query current quantity: {ex.ToString()}");
             }
-            return -1;
+            return 0;
         }
 
         public Product GetProduct(string sku)
