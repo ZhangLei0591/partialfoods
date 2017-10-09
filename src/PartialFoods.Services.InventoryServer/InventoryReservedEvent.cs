@@ -18,5 +18,8 @@ namespace PartialFoods.Services.InventoryServer
 
         [JsonProperty("user_id")]
         public string UserID { get; set; }
+
+        [JsonProperty("event_id")]
+        public string EventID { get; set; }
     }
 }

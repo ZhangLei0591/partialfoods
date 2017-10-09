@@ -8,6 +8,9 @@ namespace PartialFoods.Services.InventoryServer.Entities
         public ActivityType ActivityType { get; set; }
 
         public long CreatedOn { get; set; }
+        public string OrderID { get; set; }
+
+        public int Quantity { get; set; }
     }
 
     public enum ActivityType
