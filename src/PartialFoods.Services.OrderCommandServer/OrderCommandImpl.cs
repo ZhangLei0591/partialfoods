@@ -22,6 +22,35 @@ namespace PartialFoods.Services.OrderCommandServer
             eventEmitter = emitter;
         }
 
+        public override Task<CancelOrderResponse> CancelOrder(CancelOrderRequest request, grpc::ServerCallContext context)
+        {
+            Console.WriteLine("Handling Order cancellation request");
+
+            var evt = new OrderCanceledEvent
+            {
+                OrderID = request.OrderID,
+                UserID = request.UserID,
+                CreatedOn = (ulong)DateTime.UtcNow.Ticks,
+            };
+
+            var result = new CancelOrderResponse();
+
+            if (eventEmitter.EmitOrderCanceledEvent(evt))
+            {
+                result.ConfirmationCode = Guid.NewGuid().ToString();
+                result.Canceled = true;
+                foreach (var li in evt.LineItems)
+                {
+
+                }
+            }
+            else
+            {
+                result.Canceled = false;
+            }
+            return Task.FromResult(result);
+        }
+
         public override Task<OrderResponse> SubmitOrder(OrderRequest request, grpc::ServerCallContext context)
         {
             Console.WriteLine("Handling Order Request Submission");

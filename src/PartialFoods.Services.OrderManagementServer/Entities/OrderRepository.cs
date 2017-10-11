@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace PartialFoods.Services.OrderManagementServer.Entities
 {
@@ -10,6 +11,22 @@ namespace PartialFoods.Services.OrderManagementServer.Entities
         public OrderRepository(OrdersContext context)
         {
             this.context = context;
+        }
+
+        public Order GetOrder(string orderID)
+        {
+            Console.WriteLine($"Fetching order {orderID}");
+            try
+            {
+                var existing = context.Orders.Include(o => o.LineItems).FirstOrDefault(o => o.OrderID == orderID);
+                return existing;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine($"Failed to query order {ex.ToString()}");
+                return null;
+            }
         }
 
         public Order Add(Order order)

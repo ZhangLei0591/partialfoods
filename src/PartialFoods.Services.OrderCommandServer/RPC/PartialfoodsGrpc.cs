@@ -15,6 +15,8 @@ namespace PartialFoods.Services {
 
     static readonly grpc::Marshaller<global::PartialFoods.Services.OrderRequest> __Marshaller_OrderRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::PartialFoods.Services.OrderRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::PartialFoods.Services.OrderResponse> __Marshaller_OrderResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::PartialFoods.Services.OrderResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::PartialFoods.Services.CancelOrderRequest> __Marshaller_CancelOrderRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::PartialFoods.Services.CancelOrderRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::PartialFoods.Services.CancelOrderResponse> __Marshaller_CancelOrderResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::PartialFoods.Services.CancelOrderResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::PartialFoods.Services.OrderRequest, global::PartialFoods.Services.OrderResponse> __Method_SubmitOrder = new grpc::Method<global::PartialFoods.Services.OrderRequest, global::PartialFoods.Services.OrderResponse>(
         grpc::MethodType.Unary,
@@ -22,6 +24,13 @@ namespace PartialFoods.Services {
         "SubmitOrder",
         __Marshaller_OrderRequest,
         __Marshaller_OrderResponse);
+
+    static readonly grpc::Method<global::PartialFoods.Services.CancelOrderRequest, global::PartialFoods.Services.CancelOrderResponse> __Method_CancelOrder = new grpc::Method<global::PartialFoods.Services.CancelOrderRequest, global::PartialFoods.Services.CancelOrderResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CancelOrder",
+        __Marshaller_CancelOrderRequest,
+        __Marshaller_CancelOrderResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -33,6 +42,11 @@ namespace PartialFoods.Services {
     public abstract partial class OrderCommandBase
     {
       public virtual global::System.Threading.Tasks.Task<global::PartialFoods.Services.OrderResponse> SubmitOrder(global::PartialFoods.Services.OrderRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::PartialFoods.Services.CancelOrderResponse> CancelOrder(global::PartialFoods.Services.CancelOrderRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -78,6 +92,22 @@ namespace PartialFoods.Services {
       {
         return CallInvoker.AsyncUnaryCall(__Method_SubmitOrder, null, options, request);
       }
+      public virtual global::PartialFoods.Services.CancelOrderResponse CancelOrder(global::PartialFoods.Services.CancelOrderRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return CancelOrder(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::PartialFoods.Services.CancelOrderResponse CancelOrder(global::PartialFoods.Services.CancelOrderRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_CancelOrder, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::PartialFoods.Services.CancelOrderResponse> CancelOrderAsync(global::PartialFoods.Services.CancelOrderRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return CancelOrderAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::PartialFoods.Services.CancelOrderResponse> CancelOrderAsync(global::PartialFoods.Services.CancelOrderRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_CancelOrder, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override OrderCommandClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -90,7 +120,8 @@ namespace PartialFoods.Services {
     public static grpc::ServerServiceDefinition BindService(OrderCommandBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_SubmitOrder, serviceImpl.SubmitOrder).Build();
+          .AddMethod(__Method_SubmitOrder, serviceImpl.SubmitOrder)
+          .AddMethod(__Method_CancelOrder, serviceImpl.CancelOrder).Build();
     }
 
   }

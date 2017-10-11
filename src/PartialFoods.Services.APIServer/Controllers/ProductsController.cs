@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PartialFoods.Services.APIServer.Models;
 
-namespace PartialFoods.Services.APIServer
+namespace PartialFoods.Services.APIServer.Controllers
 {
     [Route("api/[controller]")]
     public class ProductsController : Controller

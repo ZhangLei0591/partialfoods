@@ -23,7 +23,7 @@ namespace PartialFoods.Services.OrderManagementServer
                 TaxRate = (int)evt.TaxRate,
                 UserID = evt.UserID,
                 LineItems = (from itm in evt.LineItems
-                             select new LineItem
+                             select new PartialFoods.Services.OrderManagementServer.Entities.LineItem
                              {
                                  SKU = itm.SKU,
                                  OrderID = evt.OrderID,

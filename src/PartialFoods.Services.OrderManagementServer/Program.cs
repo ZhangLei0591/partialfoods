@@ -32,7 +32,7 @@ namespace PartialFoods.Services.OrderManagementServer
 
             Server server = new Server
             {
-                Services = { OrderManagement.BindService(new OrderManagementImpl()) },
+                Services = { OrderManagement.BindService(new OrderManagementImpl(repo)) },
                 Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
             };
             server.Start();

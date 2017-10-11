@@ -31,8 +31,12 @@ namespace PartialFoods.Services.APIServer
             Channel invChannel = new Channel("127.0.0.1:3002", ChannelCredentials.Insecure);
             var invClient = new InventoryManagement.InventoryManagementClient(invChannel);
 
+            Channel orderChannel = new Channel("127.0.0.1:3001", ChannelCredentials.Insecure);
+            var orderClient = new OrderManagement.OrderManagementClient(orderChannel);
+
             services.AddSingleton(typeof(OrderCommand.OrderCommandClient), client);
             services.AddSingleton(typeof(InventoryManagement.InventoryManagementClient), invClient);
+            services.AddSingleton(typeof(OrderManagement.OrderManagementClient), orderClient);
 
             services.AddMvc();
         }

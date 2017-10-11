@@ -31,17 +31,24 @@ namespace PartialFoods.Services {
             "aW5lcxgCIAMoCRIMCgRDaXR5GAMgASgJEg8KB1ppcENvZGUYBCABKAkSEQoJ",
             "U3RhdGVDb2RlGAUgASgJIjwKCExpbmVJdGVtEgsKA1NLVRgBIAEoCRIRCglV",
             "bml0UHJpY2UYAiABKA0SEAoIUXVhbnRpdHkYAyABKA0iMgoNT3JkZXJSZXNw",
-            "b25zZRIPCgdPcmRlcklEGAEgASgJEhAKCEFjY2VwdGVkGAIgASgIMmgKDE9y",
-            "ZGVyQ29tbWFuZBJYCgtTdWJtaXRPcmRlchIjLlBhcnRpYWxGb29kcy5TZXJ2",
-            "aWNlcy5PcmRlclJlcXVlc3QaJC5QYXJ0aWFsRm9vZHMuU2VydmljZXMuT3Jk",
-            "ZXJSZXNwb25zZWIGcHJvdG8z"));
+            "b25zZRIPCgdPcmRlcklEGAEgASgJEhAKCEFjY2VwdGVkGAIgASgIIjUKEkNh",
+            "bmNlbE9yZGVyUmVxdWVzdBIPCgdPcmRlcklEGAEgASgJEg4KBlVzZXJJRBgC",
+            "IAEoCSJSChNDYW5jZWxPcmRlclJlc3BvbnNlEg8KB09yZGVySUQYASABKAkS",
+            "EAoIQ2FuY2VsZWQYAiABKAgSGAoQQ29uZmlybWF0aW9uQ29kZRgDIAEoCTLO",
+            "AQoMT3JkZXJDb21tYW5kElgKC1N1Ym1pdE9yZGVyEiMuUGFydGlhbEZvb2Rz",
+            "LlNlcnZpY2VzLk9yZGVyUmVxdWVzdBokLlBhcnRpYWxGb29kcy5TZXJ2aWNl",
+            "cy5PcmRlclJlc3BvbnNlEmQKC0NhbmNlbE9yZGVyEikuUGFydGlhbEZvb2Rz",
+            "LlNlcnZpY2VzLkNhbmNlbE9yZGVyUmVxdWVzdBoqLlBhcnRpYWxGb29kcy5T",
+            "ZXJ2aWNlcy5DYW5jZWxPcmRlclJlc3BvbnNlYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.OrderRequest), global::PartialFoods.Services.OrderRequest.Parser, new[]{ "CreatedOn", "UserID", "TaxRate", "ShippingInfo", "LineItems" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.ShippingInfo), global::PartialFoods.Services.ShippingInfo.Parser, new[]{ "Addressee", "AddressLines", "City", "ZipCode", "StateCode" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.LineItem), global::PartialFoods.Services.LineItem.Parser, new[]{ "SKU", "UnitPrice", "Quantity" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.OrderResponse), global::PartialFoods.Services.OrderResponse.Parser, new[]{ "OrderID", "Accepted" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.OrderResponse), global::PartialFoods.Services.OrderResponse.Parser, new[]{ "OrderID", "Accepted" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.CancelOrderRequest), global::PartialFoods.Services.CancelOrderRequest.Parser, new[]{ "OrderID", "UserID" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.CancelOrderResponse), global::PartialFoods.Services.CancelOrderResponse.Parser, new[]{ "OrderID", "Canceled", "ConfirmationCode" }, null, null, null)
           }));
     }
     #endregion
@@ -836,6 +843,324 @@ namespace PartialFoods.Services {
           }
           case 16: {
             Accepted = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class CancelOrderRequest : pb::IMessage<CancelOrderRequest> {
+    private static readonly pb::MessageParser<CancelOrderRequest> _parser = new pb::MessageParser<CancelOrderRequest>(() => new CancelOrderRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<CancelOrderRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PartialFoods.Services.PartialfoodsReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CancelOrderRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CancelOrderRequest(CancelOrderRequest other) : this() {
+      orderID_ = other.orderID_;
+      userID_ = other.userID_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CancelOrderRequest Clone() {
+      return new CancelOrderRequest(this);
+    }
+
+    /// <summary>Field number for the "OrderID" field.</summary>
+    public const int OrderIDFieldNumber = 1;
+    private string orderID_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string OrderID {
+      get { return orderID_; }
+      set {
+        orderID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "UserID" field.</summary>
+    public const int UserIDFieldNumber = 2;
+    private string userID_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string UserID {
+      get { return userID_; }
+      set {
+        userID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as CancelOrderRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(CancelOrderRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (OrderID != other.OrderID) return false;
+      if (UserID != other.UserID) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (OrderID.Length != 0) hash ^= OrderID.GetHashCode();
+      if (UserID.Length != 0) hash ^= UserID.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (OrderID.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(OrderID);
+      }
+      if (UserID.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(UserID);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (OrderID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderID);
+      }
+      if (UserID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(CancelOrderRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.OrderID.Length != 0) {
+        OrderID = other.OrderID;
+      }
+      if (other.UserID.Length != 0) {
+        UserID = other.UserID;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            OrderID = input.ReadString();
+            break;
+          }
+          case 18: {
+            UserID = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class CancelOrderResponse : pb::IMessage<CancelOrderResponse> {
+    private static readonly pb::MessageParser<CancelOrderResponse> _parser = new pb::MessageParser<CancelOrderResponse>(() => new CancelOrderResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<CancelOrderResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PartialFoods.Services.PartialfoodsReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CancelOrderResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CancelOrderResponse(CancelOrderResponse other) : this() {
+      orderID_ = other.orderID_;
+      canceled_ = other.canceled_;
+      confirmationCode_ = other.confirmationCode_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CancelOrderResponse Clone() {
+      return new CancelOrderResponse(this);
+    }
+
+    /// <summary>Field number for the "OrderID" field.</summary>
+    public const int OrderIDFieldNumber = 1;
+    private string orderID_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string OrderID {
+      get { return orderID_; }
+      set {
+        orderID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Canceled" field.</summary>
+    public const int CanceledFieldNumber = 2;
+    private bool canceled_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Canceled {
+      get { return canceled_; }
+      set {
+        canceled_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ConfirmationCode" field.</summary>
+    public const int ConfirmationCodeFieldNumber = 3;
+    private string confirmationCode_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string ConfirmationCode {
+      get { return confirmationCode_; }
+      set {
+        confirmationCode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as CancelOrderResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(CancelOrderResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (OrderID != other.OrderID) return false;
+      if (Canceled != other.Canceled) return false;
+      if (ConfirmationCode != other.ConfirmationCode) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (OrderID.Length != 0) hash ^= OrderID.GetHashCode();
+      if (Canceled != false) hash ^= Canceled.GetHashCode();
+      if (ConfirmationCode.Length != 0) hash ^= ConfirmationCode.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (OrderID.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(OrderID);
+      }
+      if (Canceled != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Canceled);
+      }
+      if (ConfirmationCode.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(ConfirmationCode);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (OrderID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderID);
+      }
+      if (Canceled != false) {
+        size += 1 + 1;
+      }
+      if (ConfirmationCode.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ConfirmationCode);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(CancelOrderResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.OrderID.Length != 0) {
+        OrderID = other.OrderID;
+      }
+      if (other.Canceled != false) {
+        Canceled = other.Canceled;
+      }
+      if (other.ConfirmationCode.Length != 0) {
+        ConfirmationCode = other.ConfirmationCode;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            OrderID = input.ReadString();
+            break;
+          }
+          case 16: {
+            Canceled = input.ReadBool();
+            break;
+          }
+          case 26: {
+            ConfirmationCode = input.ReadString();
             break;
           }
         }
