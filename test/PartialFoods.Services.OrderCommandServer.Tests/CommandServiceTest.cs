@@ -12,7 +12,7 @@ namespace PartialFoods.CommandService.Tests
         public void SubmittingValidTransactionInvokesEmitter()
         {
             var emitter = new FakeEventEmitter();
-            var service = new OrderCommandImpl(emitter);
+            var service = new OrderCommandImpl(emitter, null);
             var tx = GenerateFakeTransaction(true);
 
             var result = service.SubmitOrder(tx, null).Result;
@@ -30,7 +30,7 @@ namespace PartialFoods.CommandService.Tests
         public void SubmittingBadTransactionDoesNotEmitEvent()
         {
             var emitter = new FakeEventEmitter();
-            var service = new OrderCommandImpl(emitter);
+            var service = new OrderCommandImpl(emitter, null);
             var tx = GenerateFakeTransaction(false);
 
             var result = service.SubmitOrder(tx, null).Result;
@@ -44,7 +44,7 @@ namespace PartialFoods.CommandService.Tests
         {
             var emitter = new FakeEventEmitter();
             emitter.NextEmitResult = false;
-            var service = new OrderCommandImpl(emitter);
+            var service = new OrderCommandImpl(emitter, null);
             var tx = GenerateFakeTransaction(true);
 
             var result = service.SubmitOrder(tx, null).Result;

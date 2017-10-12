@@ -11,10 +11,12 @@ namespace PartialFoods.Services.OrderCommandServer
             const int Port = 3000;
 
             IEventEmitter kafkaEmitter = new KafkaEventEmitter();
+            Channel orderChannel = new Channel("127.0.0.1:3001", ChannelCredentials.Insecure);
+            var orderClient = new OrderManagement.OrderManagementClient(orderChannel);
 
             Server server = new Server
             {
-                Services = { OrderCommand.BindService(new OrderCommandImpl(kafkaEmitter)) },
+                Services = { OrderCommand.BindService(new OrderCommandImpl(kafkaEmitter, orderClient)) },
                 Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
             };
             server.Start();

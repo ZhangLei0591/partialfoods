@@ -13,6 +13,20 @@ namespace PartialFoods.Services.OrderManagementServer.Entities
             this.context = context;
         }
 
+        public bool OrderExists(string orderID)
+        {
+            try
+            {
+                var existing = context.Orders.FirstOrDefault(o => o.OrderID == orderID);
+                return existing != null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine($"Failed to check order existence: {ex.ToString()}");
+                return false;
+            }
+        }
         public Order GetOrder(string orderID)
         {
             Console.WriteLine($"Fetching order {orderID}");

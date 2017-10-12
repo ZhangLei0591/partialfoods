@@ -11,7 +11,29 @@ namespace PartialFoods.Services.OrderCommandServer
         private const string ORDERS_TOPIC = "orders";
         private const string RESERVED_TOPIC = "inventoryreserved";
         private const string CANCELED_TOPIC = "canceledorders";
+        private const string RELEASED_TOPIC = "inventoryreleased";
 
+
+        public bool EmitInventoryReleasedEvent(InventoryReleasedEvent evt)
+        {
+            try
+            {
+                var options = new KafkaOptions(new Uri("http://localhost:9092"));
+
+                var router = new BrokerRouter(options);
+                var client = new Producer(router);
+
+                string messageJson = JsonConvert.SerializeObject(evt);
+                Console.WriteLine($"Emitting Inventory Released Event {evt.EventID}");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to emit inventory released event {ex.ToString()}");
+                return false;
+            }
+
+        }
         public bool EmitOrderAcceptedEvent(OrderAcceptedEvent evt)
         {
             try

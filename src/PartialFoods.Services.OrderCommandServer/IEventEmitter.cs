@@ -10,5 +10,6 @@ namespace PartialFoods.Services.OrderCommandServer
         bool EmitInventoryReservedEvent(InventoryReservedEvent evt);
 
         bool EmitOrderCanceledEvent(OrderCanceledEvent evt);
+        bool EmitInventoryReleasedEvent(InventoryReleasedEvent evt);
     }
 }

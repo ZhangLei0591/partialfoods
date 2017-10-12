@@ -28,15 +28,19 @@ namespace PartialFoods.Services {
             "EQoJQ3JlYXRlZE9uGAIgASgEEg4KBlVzZXJJRBgDIAEoCRIPCgdUYXhSYXRl",
             "GAQgASgNEjkKDFNoaXBwaW5nSW5mbxgFIAEoCzIjLlBhcnRpYWxGb29kcy5T",
             "ZXJ2aWNlcy5TaGlwcGluZ0luZm8SMgoJTGluZUl0ZW1zGAYgAygLMh8uUGFy",
-            "dGlhbEZvb2RzLlNlcnZpY2VzLkxpbmVJdGVtMm4KD09yZGVyTWFuYWdlbWVu",
-            "dBJbCghHZXRPcmRlchImLlBhcnRpYWxGb29kcy5TZXJ2aWNlcy5HZXRPcmRl",
-            "clJlcXVlc3QaJy5QYXJ0aWFsRm9vZHMuU2VydmljZXMuR2V0T3JkZXJSZXNw",
-            "b25zZWIGcHJvdG8z"));
+            "dGlhbEZvb2RzLlNlcnZpY2VzLkxpbmVJdGVtIjYKE09yZGVyRXhpc3RzUmVz",
+            "cG9uc2USDwoHT3JkZXJJRBgBIAEoCRIOCgZFeGlzdHMYAiABKAgy0QEKD09y",
+            "ZGVyTWFuYWdlbWVudBJbCghHZXRPcmRlchImLlBhcnRpYWxGb29kcy5TZXJ2",
+            "aWNlcy5HZXRPcmRlclJlcXVlc3QaJy5QYXJ0aWFsRm9vZHMuU2VydmljZXMu",
+            "R2V0T3JkZXJSZXNwb25zZRJhCgtPcmRlckV4aXN0cxImLlBhcnRpYWxGb29k",
+            "cy5TZXJ2aWNlcy5HZXRPcmRlclJlcXVlc3QaKi5QYXJ0aWFsRm9vZHMuU2Vy",
+            "dmljZXMuT3JkZXJFeGlzdHNSZXNwb25zZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PartialFoods.Services.PartialfoodsReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.GetOrderRequest), global::PartialFoods.Services.GetOrderRequest.Parser, new[]{ "OrderID" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.GetOrderResponse), global::PartialFoods.Services.GetOrderResponse.Parser, new[]{ "OrderID", "CreatedOn", "UserID", "TaxRate", "ShippingInfo", "LineItems" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.GetOrderResponse), global::PartialFoods.Services.GetOrderResponse.Parser, new[]{ "OrderID", "CreatedOn", "UserID", "TaxRate", "ShippingInfo", "LineItems" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.OrderExistsResponse), global::PartialFoods.Services.OrderExistsResponse.Parser, new[]{ "OrderID", "Exists" }, null, null, null)
           }));
     }
     #endregion
@@ -422,6 +426,151 @@ namespace PartialFoods.Services {
           }
           case 50: {
             lineItems_.AddEntriesFrom(input, _repeated_lineItems_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class OrderExistsResponse : pb::IMessage<OrderExistsResponse> {
+    private static readonly pb::MessageParser<OrderExistsResponse> _parser = new pb::MessageParser<OrderExistsResponse>(() => new OrderExistsResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<OrderExistsResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PartialFoods.Services.OrdermgmtReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OrderExistsResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OrderExistsResponse(OrderExistsResponse other) : this() {
+      orderID_ = other.orderID_;
+      exists_ = other.exists_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public OrderExistsResponse Clone() {
+      return new OrderExistsResponse(this);
+    }
+
+    /// <summary>Field number for the "OrderID" field.</summary>
+    public const int OrderIDFieldNumber = 1;
+    private string orderID_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string OrderID {
+      get { return orderID_; }
+      set {
+        orderID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Exists" field.</summary>
+    public const int ExistsFieldNumber = 2;
+    private bool exists_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Exists {
+      get { return exists_; }
+      set {
+        exists_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as OrderExistsResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(OrderExistsResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (OrderID != other.OrderID) return false;
+      if (Exists != other.Exists) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (OrderID.Length != 0) hash ^= OrderID.GetHashCode();
+      if (Exists != false) hash ^= Exists.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (OrderID.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(OrderID);
+      }
+      if (Exists != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Exists);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (OrderID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderID);
+      }
+      if (Exists != false) {
+        size += 1 + 1;
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(OrderExistsResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.OrderID.Length != 0) {
+        OrderID = other.OrderID;
+      }
+      if (other.Exists != false) {
+        Exists = other.Exists;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            OrderID = input.ReadString();
+            break;
+          }
+          case 16: {
+            Exists = input.ReadBool();
             break;
           }
         }

@@ -15,6 +15,7 @@ namespace PartialFoods.Services {
 
     static readonly grpc::Marshaller<global::PartialFoods.Services.GetOrderRequest> __Marshaller_GetOrderRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::PartialFoods.Services.GetOrderRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::PartialFoods.Services.GetOrderResponse> __Marshaller_GetOrderResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::PartialFoods.Services.GetOrderResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::PartialFoods.Services.OrderExistsResponse> __Marshaller_OrderExistsResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::PartialFoods.Services.OrderExistsResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::PartialFoods.Services.GetOrderRequest, global::PartialFoods.Services.GetOrderResponse> __Method_GetOrder = new grpc::Method<global::PartialFoods.Services.GetOrderRequest, global::PartialFoods.Services.GetOrderResponse>(
         grpc::MethodType.Unary,
@@ -22,6 +23,13 @@ namespace PartialFoods.Services {
         "GetOrder",
         __Marshaller_GetOrderRequest,
         __Marshaller_GetOrderResponse);
+
+    static readonly grpc::Method<global::PartialFoods.Services.GetOrderRequest, global::PartialFoods.Services.OrderExistsResponse> __Method_OrderExists = new grpc::Method<global::PartialFoods.Services.GetOrderRequest, global::PartialFoods.Services.OrderExistsResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "OrderExists",
+        __Marshaller_GetOrderRequest,
+        __Marshaller_OrderExistsResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -33,6 +41,11 @@ namespace PartialFoods.Services {
     public abstract partial class OrderManagementBase
     {
       public virtual global::System.Threading.Tasks.Task<global::PartialFoods.Services.GetOrderResponse> GetOrder(global::PartialFoods.Services.GetOrderRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::PartialFoods.Services.OrderExistsResponse> OrderExists(global::PartialFoods.Services.GetOrderRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -78,6 +91,22 @@ namespace PartialFoods.Services {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetOrder, null, options, request);
       }
+      public virtual global::PartialFoods.Services.OrderExistsResponse OrderExists(global::PartialFoods.Services.GetOrderRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return OrderExists(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::PartialFoods.Services.OrderExistsResponse OrderExists(global::PartialFoods.Services.GetOrderRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_OrderExists, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::PartialFoods.Services.OrderExistsResponse> OrderExistsAsync(global::PartialFoods.Services.GetOrderRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return OrderExistsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::PartialFoods.Services.OrderExistsResponse> OrderExistsAsync(global::PartialFoods.Services.GetOrderRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_OrderExists, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override OrderManagementClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -90,7 +119,8 @@ namespace PartialFoods.Services {
     public static grpc::ServerServiceDefinition BindService(OrderManagementBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_GetOrder, serviceImpl.GetOrder).Build();
+          .AddMethod(__Method_GetOrder, serviceImpl.GetOrder)
+          .AddMethod(__Method_OrderExists, serviceImpl.OrderExists).Build();
     }
 
   }

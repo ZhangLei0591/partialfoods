@@ -3,18 +3,18 @@ using PartialFoods.Services.InventoryServer.Entities;
 
 namespace PartialFoods.Services.InventoryServer
 {
-    public class InventoryReservedEventProcessor
+    public class InventoryReleasedEventProcessor
     {
         private IInventoryRepository repository;
 
-        public InventoryReservedEventProcessor(IInventoryRepository repository)
+        public InventoryReleasedEventProcessor(IInventoryRepository repository)
         {
             this.repository = repository;
         }
 
-        public bool HandleInventoryReservedEvent(InventoryReservedEvent evt)
+        public bool HandleInventoryReleasedEvent(InventoryReleasedEvent evt)
         {
-            Console.WriteLine($"Handling inventory reserved event - {evt.EventID}");
+            Console.WriteLine($"Handling inventory released event - {evt.EventID}");
             ProductActivity activity = new ProductActivity
             {
                 OrderID = evt.OrderID,
@@ -22,7 +22,7 @@ namespace PartialFoods.Services.InventoryServer
                 Quantity = (int)evt.Quantity,
                 ActivityID = evt.EventID,
                 CreatedOn = DateTime.UtcNow.Ticks,
-                ActivityType = ActivityType.Reserved
+                ActivityType = ActivityType.Released
             };
             var result = repository.PutActivity(activity);
 

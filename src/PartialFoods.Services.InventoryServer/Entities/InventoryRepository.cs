@@ -24,9 +24,9 @@ namespace PartialFoods.Services.InventoryServer.Entities
                                              orderby activity.CreatedOn
                                              select activity).ToArray();
 
-                    // Reserve and Ship decrease qty, release a reservation increases
+                    // Reserve decreases quantity, Ship has no effect (already decreased), Released increases
                     return productActivities.Aggregate(product.OriginalQuantity, (qty, next) =>
-                        (next.ActivityType == ActivityType.Reserved || next.ActivityType == ActivityType.Shipped) ?
+                        (next.ActivityType == ActivityType.Reserved) ?
                             qty - next.Quantity : qty + next.Quantity
                     );
                 }

@@ -16,39 +16,66 @@ namespace PartialFoods.Services.OrderCommandServer
     public class OrderCommandImpl : OrderCommand.OrderCommandBase
     {
         private IEventEmitter eventEmitter;
+        private OrderManagement.OrderManagementClient orderManagementClient;
 
-        public OrderCommandImpl(IEventEmitter emitter)
+        public OrderCommandImpl(IEventEmitter emitter, OrderManagement.OrderManagementClient orderManagementClient)
         {
             eventEmitter = emitter;
+            this.orderManagementClient = orderManagementClient;
         }
 
         public override Task<CancelOrderResponse> CancelOrder(CancelOrderRequest request, grpc::ServerCallContext context)
         {
             Console.WriteLine("Handling Order cancellation request");
 
-            var evt = new OrderCanceledEvent
-            {
-                OrderID = request.OrderID,
-                UserID = request.UserID,
-                CreatedOn = (ulong)DateTime.UtcNow.Ticks,
-            };
 
             var result = new CancelOrderResponse();
-
-            if (eventEmitter.EmitOrderCanceledEvent(evt))
+            try
             {
-                result.ConfirmationCode = Guid.NewGuid().ToString();
-                result.Canceled = true;
-                foreach (var li in evt.LineItems)
+                var exists = orderManagementClient.OrderExists(new GetOrderRequest { OrderID = request.OrderID });
+                if (!exists.Exists)
                 {
-
+                    result.Canceled = false;
+                    return Task.FromResult(result);
                 }
+                var originalOrder = orderManagementClient.GetOrder(new GetOrderRequest { OrderID = request.OrderID });
+
+                var evt = new OrderCanceledEvent
+                {
+                    OrderID = request.OrderID,
+                    UserID = request.UserID,
+                    CreatedOn = (ulong)DateTime.UtcNow.Ticks,
+                };
+
+                if (eventEmitter.EmitOrderCanceledEvent(evt))
+                {
+                    result.ConfirmationCode = Guid.NewGuid().ToString();
+                    result.Canceled = true;
+                    foreach (var li in originalOrder.LineItems)
+                    {
+                        eventEmitter.EmitInventoryReleasedEvent(new InventoryReleasedEvent
+                        {
+                            SKU = li.SKU,
+                            ReleasedOn = (ulong)DateTime.UtcNow.Ticks,
+                            Quantity = li.Quantity,
+                            OrderID = request.OrderID,
+                            UserID = request.UserID,
+                            EventID = Guid.NewGuid().ToString()
+                        });
+                    }
+                }
+                else
+                {
+                    result.Canceled = false;
+                }
+                return Task.FromResult(result);
             }
-            else
+            catch (Exception ex)
             {
+                Console.WriteLine($"Failed to handle order cancellation {ex.ToString()}");
                 result.Canceled = false;
+                return Task.FromResult(result);
             }
-            return Task.FromResult(result);
         }
 
         public override Task<OrderResponse> SubmitOrder(OrderRequest request, grpc::ServerCallContext context)

@@ -4,5 +4,7 @@ namespace PartialFoods.Services.OrderManagementServer.Entities
     {
         Order Add(Order order);
         Order GetOrder(string orderID);
+
+        bool OrderExists(string orderID);
     }
 }

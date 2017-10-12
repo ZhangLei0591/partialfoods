@@ -6,6 +6,7 @@ import "partialfoods.proto";
 
 service OrderManagement {
     rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
+    rpc OrderExists(GetOrderRequest) returns (OrderExistsResponse);
 }
 
 message GetOrderRequest {
@@ -20,4 +21,9 @@ message GetOrderResponse {
 
     ShippingInfo ShippingInfo = 5; // Information on where order is to be shipped
     repeated LineItem LineItems = 6; // Individual line items on a transaction
+}
+
+message OrderExistsResponse {
+    string OrderID = 1;
+    bool Exists = 2;
 }

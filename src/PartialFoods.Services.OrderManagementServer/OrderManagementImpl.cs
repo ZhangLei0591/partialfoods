@@ -16,6 +16,17 @@ namespace PartialFoods.Services.OrderManagementServer
         {
             this.repository = repository;
         }
+
+        public override Task<OrderExistsResponse> OrderExists(GetOrderRequest request, grpc::ServerCallContext context)
+        {
+            bool exists = repository.OrderExists(request.OrderID);
+            var resp = new OrderExistsResponse
+            {
+                Exists = exists,
+                OrderID = request.OrderID
+            };
+            return Task.FromResult(resp);
+        }
         public override Task<GetOrderResponse> GetOrder(GetOrderRequest request, grpc::ServerCallContext context)
         {
             GetOrderResponse response = new GetOrderResponse();

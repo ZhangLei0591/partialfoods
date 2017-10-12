@@ -13,7 +13,15 @@ namespace PartialFoods.CommandService.Tests
             this.EmittedInventoryReservedEvents = new List<InventoryReservedEvent>();
             this.NextEmitResult = true;
         }
+        public bool EmitOrderCanceledEvent(OrderCanceledEvent evt)
+        {
+            return true;
+        }
 
+        public bool EmitInventoryReleasedEvent(InventoryReleasedEvent evt)
+        {
+            return true;
+        }
         public bool EmitOrderAcceptedEvent(OrderAcceptedEvent evt)
         {
             if (this.NextEmitResult)

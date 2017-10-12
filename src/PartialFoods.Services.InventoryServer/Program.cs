@@ -10,7 +10,8 @@ namespace PartialFoods.Services.InventoryServer
         static void Main(string[] args)
         {
             string brokerList = "localhost:9092";
-            const string topic = "inventoryreserved";
+            const string reservedTopic = "inventoryreserved";
+            const string releasedTopic = "inventoryreleased";
 
             var config = new Dictionary<string, object>
             {
@@ -20,9 +21,14 @@ namespace PartialFoods.Services.InventoryServer
             };
             var context = new InventoryContext();
             var repo = new InventoryRepository(context);
-            var eventProcessor = new InventoryReservedEventProcessor(repo);
-            var kafkaConsumer = new KafkaActivityConsumer(topic, config, eventProcessor);
+
+            var reservedEventProcessor = new InventoryReservedEventProcessor(repo);
+            var kafkaConsumer = new KafkaReservedConsumer(reservedTopic, config, reservedEventProcessor);
             kafkaConsumer.Consume();
+
+            var releasedEventProcessor = new InventoryReleasedEventProcessor(repo);
+            var releasedConsumer = new KafkaReleasedConsumer(releasedTopic, config, releasedEventProcessor);
+            releasedConsumer.Consume();
 
             const int Port = 3002;
             Server server = new Server

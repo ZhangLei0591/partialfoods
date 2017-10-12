@@ -9,13 +9,13 @@ using Newtonsoft.Json;
 namespace PartialFoods.Services.InventoryServer
 {
 
-    public class KafkaActivityConsumer
+    public class KafkaReleasedConsumer
     {
         private string topic;
         private Dictionary<string, object> config;
-        private InventoryReservedEventProcessor eventProcessor;
+        private InventoryReleasedEventProcessor eventProcessor;
 
-        public KafkaActivityConsumer(string topic, Dictionary<string, object> config, InventoryReservedEventProcessor eventProcessor)
+        public KafkaReleasedConsumer(string topic, Dictionary<string, object> config, InventoryReleasedEventProcessor eventProcessor)
         {
             this.topic = topic;
             this.config = config;
@@ -40,8 +40,8 @@ namespace PartialFoods.Services.InventoryServer
                             string rawJson = msg.Value;
                             try
                             {
-                                InventoryReservedEvent evt = JsonConvert.DeserializeObject<InventoryReservedEvent>(rawJson);
-                                eventProcessor.HandleInventoryReservedEvent(evt);
+                                InventoryReleasedEvent evt = JsonConvert.DeserializeObject<InventoryReleasedEvent>(rawJson);
+                                eventProcessor.HandleInventoryReleasedEvent(evt);
                                 var committedOffsets = consumer.CommitAsync(msg).Result;
                                 if (committedOffsets.Error.HasError)
                                 {
@@ -51,7 +51,7 @@ namespace PartialFoods.Services.InventoryServer
                             catch (Exception ex)
                             {
                                 Console.WriteLine(ex.StackTrace);
-                                Console.WriteLine($"Failed to handle order accepted event : ${ex.ToString()}");
+                                Console.WriteLine($"Failed to handle inventory released event : ${ex.ToString()}");
                             }
                         }
                     }
