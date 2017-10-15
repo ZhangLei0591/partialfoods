@@ -25,10 +25,19 @@ namespace PartialFoods.Services.InventoryServer.Entities
                                              select activity).ToArray();
 
                     // Reserve decreases quantity, Ship has no effect (already decreased), Released increases
-                    return productActivities.Aggregate(product.OriginalQuantity, (qty, next) =>
-                        (next.ActivityType == ActivityType.Reserved) ?
-                            qty - next.Quantity : qty + next.Quantity
-                    );
+                    var quantity = product.OriginalQuantity;
+                    foreach (var activity in productActivities)
+                    {
+                        if (activity.ActivityType == ActivityType.Released)
+                        {
+                            quantity += activity.Quantity;
+                        }
+                        else if (activity.ActivityType == ActivityType.Reserved)
+                        {
+                            quantity -= activity.Quantity;
+                        }
+                    }
+                    return quantity;
                 }
             }
             catch (Exception ex)
