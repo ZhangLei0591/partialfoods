@@ -11,9 +11,10 @@ using System;
 namespace PartialFoods.Services.OrderManagementServer.Migrations
 {
     [DbContext(typeof(OrdersContext))]
-    partial class OrdersContextModelSnapshot : ModelSnapshot
+    [Migration("20171015152351_RenameActivityToActivityType")]
+    partial class RenameActivityToActivityType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

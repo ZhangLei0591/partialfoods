@@ -11,9 +11,10 @@ using System;
 namespace PartialFoods.Services.OrderManagementServer.Migrations
 {
     [DbContext(typeof(OrdersContext))]
-    partial class OrdersContextModelSnapshot : ModelSnapshot
+    [Migration("20171015152123_AddActivities")]
+    partial class AddActivities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,7 +58,7 @@ namespace PartialFoods.Services.OrderManagementServer.Migrations
 
                     b.Property<string>("ActivityID");
 
-                    b.Property<int>("ActivityType");
+                    b.Property<int>("Activity");
 
                     b.Property<long>("OccuredOn");
 

@@ -8,6 +8,7 @@ namespace PartialFoods.Services.OrderManagementServer.Entities
         public long CreatedOn { get; set; }
         public string UserID { get; set; }
         public ICollection<LineItem> LineItems { get; set; } = new List<LineItem>();
+        public ICollection<OrderActivity> Activities { get; set; } = new List<OrderActivity>();
 
         public int TaxRate { get; set; }
     }

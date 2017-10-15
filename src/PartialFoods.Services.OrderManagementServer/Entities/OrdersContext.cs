@@ -7,6 +7,8 @@ namespace PartialFoods.Services.OrderManagementServer.Entities
         public DbSet<Order> Orders { get; set; }
         public DbSet<LineItem> OrderItems { get; set; }
 
+        public DbSet<OrderActivity> Activities { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=orders;Username=postgres;Password=wopr");
@@ -19,6 +21,9 @@ namespace PartialFoods.Services.OrderManagementServer.Entities
 
             builder.Entity<LineItem>()
                 .HasKey(li => new { li.OrderID, li.SKU });
+
+            builder.Entity<OrderActivity>()
+                .HasKey(a => new { a.OrderID, a.ActivityID });
         }
     }
 }
