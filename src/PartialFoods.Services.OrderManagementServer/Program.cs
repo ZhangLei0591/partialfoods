@@ -16,6 +16,7 @@ namespace PartialFoods.Services.OrderManagementServer
         {
             string brokerList = "localhost:9092";
             const string topic = "orders";
+            const string canceledTopic = "canceledorders";
 
             var config = new Dictionary<string, object>
             {
@@ -26,8 +27,12 @@ namespace PartialFoods.Services.OrderManagementServer
             var context = new OrdersContext();
             var repo = new OrderRepository(context);
             var eventProcessor = new OrderAcceptedEventProcessor(repo);
-            var kafkaConsumer = new KafkaOrdersConsumer(topic, config, eventProcessor);
-            kafkaConsumer.Consume();
+            var canceledProcessor = new OrderCanceledEventProcessor(repo);
+
+            var orderConsumer = new KafkaOrdersConsumer(topic, config, eventProcessor);
+            var activityConsumer = new KafkaActivitiesConsumer(canceledTopic, config, canceledProcessor);
+            orderConsumer.Consume();
+            activityConsumer.Consume();
             const int Port = 3001;
 
             Server server = new Server

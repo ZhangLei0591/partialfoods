@@ -13,6 +13,22 @@ namespace PartialFoods.Services.OrderManagementServer.Entities
             this.context = context;
         }
 
+        public OrderActivity AddActivity(OrderActivity activity)
+        {
+            try
+            {
+                context.Activities.Add(activity);
+                context.SaveChanges();
+                return activity;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine($"Failed to add order activity: {ex.ToString()}");
+                return null;
+            }
+        }
+
         public bool OrderExists(string orderID)
         {
             try

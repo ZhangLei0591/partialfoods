@@ -1,10 +1,30 @@
+using PartialFoods.Services.OrderManagementServer.Entities;
+using System;
+using System.Linq;
+
 namespace PartialFoods.Services.OrderManagementServer
 {
-    // TODO - monitor order canceled events and then add a canceled activity
-    // to the list of order activities. In true ES fashion, this CANNOT mutate
-    // source-of-truth state, it can only add facts and/or update materialized view
     public class OrderCanceledEventProcessor
     {
+        private IOrderRepository orderRepository;
 
+        public OrderCanceledEventProcessor(IOrderRepository orderRepository)
+        {
+            this.orderRepository = orderRepository;
+        }
+
+        public bool HandleOrderCanceledEvent(OrderCanceledEvent orderCanceledEvent)
+        {
+            Console.WriteLine("Handling order canceled event");
+
+            var result = this.orderRepository.AddActivity(new OrderActivity
+            {
+                OccuredOn = (long)orderCanceledEvent.CreatedOn,
+                UserID = orderCanceledEvent.UserID,
+                OrderID = orderCanceledEvent.OrderID,
+                ActivityType = ActivityType.Canceled
+            });
+            return (result != null);
+        }
     }
 }
