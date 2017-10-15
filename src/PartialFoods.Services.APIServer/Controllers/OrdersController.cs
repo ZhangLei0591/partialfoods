@@ -74,6 +74,7 @@ namespace PartialFoods.Services.APIServer.Controllers
                 OrderID = internalOrder.OrderID,
                 CreatedOn = internalOrder.CreatedOn,
                 TaxRate = internalOrder.TaxRate,
+                Status = "open",
                 LineItems = (
                     from li in internalOrder.LineItems
                     select new OrderItem
@@ -84,6 +85,11 @@ namespace PartialFoods.Services.APIServer.Controllers
                     }
                 ).ToArray()
             };
+
+            if (internalOrder.Status == OrderStatus.Canceled)
+            {
+                response.Status = "canceled";
+            }
 
             return response;
         }

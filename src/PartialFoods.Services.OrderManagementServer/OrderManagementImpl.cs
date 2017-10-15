@@ -46,6 +46,12 @@ namespace PartialFoods.Services.OrderManagementServer
                         UnitPrice = (uint)li.UnitPrice,
                     });
                 }
+                var status = OrderStatus.Open;
+                if (order.Activities.FirstOrDefault(a => a.ActivityType == ActivityType.Canceled) != null)
+                {
+                    status = OrderStatus.Canceled;
+                }
+                response.Status = status;
             }
 
             return Task.FromResult(response);

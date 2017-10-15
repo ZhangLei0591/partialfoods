@@ -48,7 +48,10 @@ namespace PartialFoods.Services.OrderManagementServer.Entities
             Console.WriteLine($"Fetching order {orderID}");
             try
             {
-                var existing = context.Orders.Include(o => o.LineItems).FirstOrDefault(o => o.OrderID == orderID);
+                var existing = context.Orders
+                    .Include(o => o.LineItems)
+                    .Include(o => o.Activities)
+                    .FirstOrDefault(o => o.OrderID == orderID);
                 return existing;
             }
             catch (Exception ex)

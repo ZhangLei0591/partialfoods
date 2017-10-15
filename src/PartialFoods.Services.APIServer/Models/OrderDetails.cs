@@ -16,6 +16,9 @@ namespace PartialFoods.Services.APIServer.Models
 
         [JsonProperty("line_items")]
         public ICollection<OrderItem> LineItems { get; set; } = new List<OrderItem>();
+
+        [JsonProperty("status")]
+        public string Status { get; set; }
     }
 
     public class OrderItem

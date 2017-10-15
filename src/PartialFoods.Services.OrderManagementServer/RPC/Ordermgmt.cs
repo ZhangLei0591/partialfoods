@@ -24,28 +24,40 @@ namespace PartialFoods.Services {
           string.Concat(
             "Cg9vcmRlcm1nbXQucHJvdG8SFVBhcnRpYWxGb29kcy5TZXJ2aWNlcxoScGFy",
             "dGlhbGZvb2RzLnByb3RvIiIKD0dldE9yZGVyUmVxdWVzdBIPCgdPcmRlcklE",
-            "GAEgASgJIsYBChBHZXRPcmRlclJlc3BvbnNlEg8KB09yZGVySUQYASABKAkS",
+            "GAEgASgJIvoBChBHZXRPcmRlclJlc3BvbnNlEg8KB09yZGVySUQYASABKAkS",
             "EQoJQ3JlYXRlZE9uGAIgASgEEg4KBlVzZXJJRBgDIAEoCRIPCgdUYXhSYXRl",
             "GAQgASgNEjkKDFNoaXBwaW5nSW5mbxgFIAEoCzIjLlBhcnRpYWxGb29kcy5T",
             "ZXJ2aWNlcy5TaGlwcGluZ0luZm8SMgoJTGluZUl0ZW1zGAYgAygLMh8uUGFy",
-            "dGlhbEZvb2RzLlNlcnZpY2VzLkxpbmVJdGVtIjYKE09yZGVyRXhpc3RzUmVz",
-            "cG9uc2USDwoHT3JkZXJJRBgBIAEoCRIOCgZFeGlzdHMYAiABKAgy0QEKD09y",
-            "ZGVyTWFuYWdlbWVudBJbCghHZXRPcmRlchImLlBhcnRpYWxGb29kcy5TZXJ2",
-            "aWNlcy5HZXRPcmRlclJlcXVlc3QaJy5QYXJ0aWFsRm9vZHMuU2VydmljZXMu",
-            "R2V0T3JkZXJSZXNwb25zZRJhCgtPcmRlckV4aXN0cxImLlBhcnRpYWxGb29k",
-            "cy5TZXJ2aWNlcy5HZXRPcmRlclJlcXVlc3QaKi5QYXJ0aWFsRm9vZHMuU2Vy",
-            "dmljZXMuT3JkZXJFeGlzdHNSZXNwb25zZWIGcHJvdG8z"));
+            "dGlhbEZvb2RzLlNlcnZpY2VzLkxpbmVJdGVtEjIKBlN0YXR1cxgHIAEoDjIi",
+            "LlBhcnRpYWxGb29kcy5TZXJ2aWNlcy5PcmRlclN0YXR1cyI2ChNPcmRlckV4",
+            "aXN0c1Jlc3BvbnNlEg8KB09yZGVySUQYASABKAkSDgoGRXhpc3RzGAIgASgI",
+            "KjIKC09yZGVyU3RhdHVzEgsKB1VOS05PV04QABIICgRPUEVOEAESDAoIQ0FO",
+            "Q0VMRUQQAjLRAQoPT3JkZXJNYW5hZ2VtZW50ElsKCEdldE9yZGVyEiYuUGFy",
+            "dGlhbEZvb2RzLlNlcnZpY2VzLkdldE9yZGVyUmVxdWVzdBonLlBhcnRpYWxG",
+            "b29kcy5TZXJ2aWNlcy5HZXRPcmRlclJlc3BvbnNlEmEKC09yZGVyRXhpc3Rz",
+            "EiYuUGFydGlhbEZvb2RzLlNlcnZpY2VzLkdldE9yZGVyUmVxdWVzdBoqLlBh",
+            "cnRpYWxGb29kcy5TZXJ2aWNlcy5PcmRlckV4aXN0c1Jlc3BvbnNlYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PartialFoods.Services.PartialfoodsReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PartialFoods.Services.OrderStatus), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.GetOrderRequest), global::PartialFoods.Services.GetOrderRequest.Parser, new[]{ "OrderID" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.GetOrderResponse), global::PartialFoods.Services.GetOrderResponse.Parser, new[]{ "OrderID", "CreatedOn", "UserID", "TaxRate", "ShippingInfo", "LineItems" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.GetOrderResponse), global::PartialFoods.Services.GetOrderResponse.Parser, new[]{ "OrderID", "CreatedOn", "UserID", "TaxRate", "ShippingInfo", "LineItems", "Status" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PartialFoods.Services.OrderExistsResponse), global::PartialFoods.Services.OrderExistsResponse.Parser, new[]{ "OrderID", "Exists" }, null, null, null)
           }));
     }
     #endregion
 
   }
+  #region Enums
+  public enum OrderStatus {
+    [pbr::OriginalName("UNKNOWN")] Unknown = 0,
+    [pbr::OriginalName("OPEN")] Open = 1,
+    [pbr::OriginalName("CANCELED")] Canceled = 2,
+  }
+
+  #endregion
+
   #region Messages
   public sealed partial class GetOrderRequest : pb::IMessage<GetOrderRequest> {
     private static readonly pb::MessageParser<GetOrderRequest> _parser = new pb::MessageParser<GetOrderRequest>(() => new GetOrderRequest());
@@ -194,6 +206,7 @@ namespace PartialFoods.Services {
       taxRate_ = other.taxRate_;
       ShippingInfo = other.shippingInfo_ != null ? other.ShippingInfo.Clone() : null;
       lineItems_ = other.lineItems_.Clone();
+      status_ = other.status_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -281,6 +294,17 @@ namespace PartialFoods.Services {
       get { return lineItems_; }
     }
 
+    /// <summary>Field number for the "Status" field.</summary>
+    public const int StatusFieldNumber = 7;
+    private global::PartialFoods.Services.OrderStatus status_ = 0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::PartialFoods.Services.OrderStatus Status {
+      get { return status_; }
+      set {
+        status_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as GetOrderResponse);
@@ -300,6 +324,7 @@ namespace PartialFoods.Services {
       if (TaxRate != other.TaxRate) return false;
       if (!object.Equals(ShippingInfo, other.ShippingInfo)) return false;
       if(!lineItems_.Equals(other.lineItems_)) return false;
+      if (Status != other.Status) return false;
       return true;
     }
 
@@ -312,6 +337,7 @@ namespace PartialFoods.Services {
       if (TaxRate != 0) hash ^= TaxRate.GetHashCode();
       if (shippingInfo_ != null) hash ^= ShippingInfo.GetHashCode();
       hash ^= lineItems_.GetHashCode();
+      if (Status != 0) hash ^= Status.GetHashCode();
       return hash;
     }
 
@@ -343,6 +369,10 @@ namespace PartialFoods.Services {
         output.WriteMessage(ShippingInfo);
       }
       lineItems_.WriteTo(output, _repeated_lineItems_codec);
+      if (Status != 0) {
+        output.WriteRawTag(56);
+        output.WriteEnum((int) Status);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -364,6 +394,9 @@ namespace PartialFoods.Services {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(ShippingInfo);
       }
       size += lineItems_.CalculateSize(_repeated_lineItems_codec);
+      if (Status != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Status);
+      }
       return size;
     }
 
@@ -391,6 +424,9 @@ namespace PartialFoods.Services {
         ShippingInfo.MergeFrom(other.ShippingInfo);
       }
       lineItems_.Add(other.lineItems_);
+      if (other.Status != 0) {
+        Status = other.Status;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -426,6 +462,10 @@ namespace PartialFoods.Services {
           }
           case 50: {
             lineItems_.AddEntriesFrom(input, _repeated_lineItems_codec);
+            break;
+          }
+          case 56: {
+            status_ = (global::PartialFoods.Services.OrderStatus) input.ReadEnum();
             break;
           }
         }

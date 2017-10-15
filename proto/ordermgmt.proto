@@ -21,9 +21,17 @@ message GetOrderResponse {
 
     ShippingInfo ShippingInfo = 5; // Information on where order is to be shipped
     repeated LineItem LineItems = 6; // Individual line items on a transaction
+
+    OrderStatus Status = 7;
 }
 
 message OrderExistsResponse {
     string OrderID = 1;
     bool Exists = 2;
+}
+
+enum OrderStatus {
+    UNKNOWN = 0;
+    OPEN = 1;
+    CANCELED = 2;
 }
