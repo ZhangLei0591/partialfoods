@@ -45,6 +45,7 @@ namespace PartialFoods.Services.OrderCommandServer
                     OrderID = request.OrderID,
                     UserID = request.UserID,
                     CreatedOn = (ulong)DateTime.UtcNow.Ticks,
+                    ActivityID = Guid.NewGuid().ToString(),
                 };
 
                 if (eventEmitter.EmitOrderCanceledEvent(evt))

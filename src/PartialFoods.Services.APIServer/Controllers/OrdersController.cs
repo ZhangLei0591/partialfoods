@@ -52,10 +52,12 @@ namespace PartialFoods.Services.APIServer.Controllers
             };
         }
 
-        [HttpDelete]
-        public CancelOrderResponse CancelOrder(string orderID)
+        [HttpDelete("{orderid}")]
+        public CancelOrderResponse CancelOrder(string orderid)
         {
-            var result = orderCommandClient.CancelOrder(new CancelOrderRequest { OrderID = orderID });
+            // TODO : don't hardcode the user ID. Ideally this would come from a propogated bearer token
+            // exposed via middleware
+            var result = orderCommandClient.CancelOrder(new CancelOrderRequest { OrderID = orderid, UserID = "kevin" });
             return new CancelOrderResponse
             {
                 OrderID = result.OrderID,
